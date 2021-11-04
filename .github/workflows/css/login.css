@@ -1,0 +1,58 @@
+body{
+    background-color: #1F2833;
+}
+
+label {
+    color: white;
+}
+
+.login {
+    color:white;
+}
+
+.container {
+    width: 50%;
+    border: 1px solid #66fcf1;
+}
+
+.username [type=text] {
+    color: black;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #66fcf1;
+    box-sizing: border-box;
+  }
+
+.password [type=password] {
+    color: black;
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #66fcf1;
+    box-sizing: border-box;
+}
+
+.loginButton {
+    background-color: white;
+    color: #1F2833;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border: 1px solid #66fcf1;
+  }
+
+.createAccountButton {
+    background-color: white;
+    color: #1F2833;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    border: 1px solid #66fcf1;
+}
