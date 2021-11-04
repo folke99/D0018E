@@ -18,24 +18,32 @@
 .right {
   padding: 10px;
   height: 300px; /* Should be removed. Only for demonstration */
+  background-color: rgba(69, 162, 158, 0.7);
 }
 
 /* Style the left column */
 .left {
-  grid-area: left;
-  background-color: #45a29e;
+  grid-area: left; 
 }
 
 /* Style the middle column */
 .middle {
   grid-area: middle;
-  background-color: #45a29e;
 }
 
 /* Style the right column */
 .right {
   grid-area: right;
-  background-color: #45a29e;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .gridContainer  {
+    grid-template-areas:
+      'left left left left left left' 
+      'middle middle middle middle middle middle' 
+      'right right right right right right';
+  }
 }
 
 .left h1, 
@@ -43,4 +51,5 @@
 .right h1{
   text-align: center;
   margin: 0 auto;
+  color: #66fcf1
 }
