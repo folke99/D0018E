@@ -9,6 +9,8 @@
     'left left middle middle right right';
   grid-column-gap: 10px;
   margin-bottom: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
 } 
 
 .left,
@@ -21,15 +23,24 @@
 /* Style the left column */
 .left {
   grid-area: left;
+  background-color: #45a29e;
 }
 
 /* Style the middle column */
 .middle {
   grid-area: middle;
+  background-color: #45a29e;
 }
 
 /* Style the right column */
 .right {
   grid-area: right;
+  background-color: #45a29e;
 }
 
+.left h1, 
+.middle h1, 
+.right h1{
+  text-align: center;
+  margin: 0 auto;
+}
