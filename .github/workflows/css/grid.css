@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+/* The grid container */
+.gridContainer {
+  display: grid;
+  grid-template-areas: 
+    'left left middle middle right right';
+  grid-column-gap: 10px;
+  margin-bottom: 50px;
+} 
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Style the left column */
+.left {
+  grid-area: left;
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
