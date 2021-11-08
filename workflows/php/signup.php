@@ -1,6 +1,8 @@
 <html>
 	<body>
 		<?php
+			$uname = $_GET["uname"];
+			$psw = $_GET["psw"];
 			$servername = "utbweb.its.ltu.se";
 			$username = "19990719";
 			$password = "19990719";
@@ -13,24 +15,16 @@
 			  die("Connection failed: " . $conn->connect_error);
 			}
 
-			$sql = "CREATE TABLE users( ".
-			            "uID INT NOT NULL AUTO_INCREMENT, ".
-			            "uUserName VARCHAR(100) NOT NULL, ".
-			            "uPassword VARCHAR(40) NOT NULL, ".
-			            "PRIMARY KEY ( uID )); ";
-			         if ($conn->query($sql)) {
-			            printf("Table tutorials_tbl created successfully.<br />");
-			         }
-
-			$sql = "INSERT INTO users (Uusername, Upassword)
-			VALUES (uname, psw)";
-			// Create database
-			/*$sql = "CREATE DATABASE myDB";
+			$sql = "INSERT INTO users (uUserName, uPassword)
+			VALUES ('$uname', '$psw')";
 			if ($conn->query($sql) === TRUE) {
-			  echo "Database created successfully";
+			  echo "New record created successfully";
 			} else {
-			  echo "Error creating database: " . $conn->error;
-			}*/
+			  echo "Error: " . $sql . "<br>" . $conn->error;
+			}
+
+			echo $uname;
+			echo $psw;
 
 			$conn->close();
 		?>
