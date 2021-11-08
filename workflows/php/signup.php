@@ -1,6 +1,18 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<?php
+    <head>
+        <link rel="stylesheet" href="../css/createAccount.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style type="text/css">
+        	html{
+        		padding-top: 10%;
+        	}
+
+        </style>
+    </head>
+    <body>
+        <center>
+        <?php
 			$uname = $_GET["uname"];
 			$psw = $_GET["psw"];
 			$servername = "utbweb.its.ltu.se";
@@ -18,15 +30,16 @@
 			$sql = "INSERT INTO users (uUserName, uPassword)
 			VALUES ('$uname', '$psw')";
 			if ($conn->query($sql) === TRUE) {
-			  echo "New record created successfully";
+			  echo "<h1 style='color:white'>Account created successfully!</h1>";
 			} else {
-			  echo "Error: " . $sql . "<br>" . $conn->error;
+			  echo "<h1 style='color:white>Failed to create account</h1>";
 			}
-
-			echo $uname;
-			echo $psw;
 
 			$conn->close();
 		?>
-	</body>
+		<a href="../html/index.html">
+        	<button class="createAccountButton" type="submit">Go to home page</button>
+        </a>
+        </center>
+    </body>
 </html>
