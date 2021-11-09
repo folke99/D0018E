@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../css/createAccount.css">
+        <link rel="stylesheet" href="../css/login.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style type="text/css">
         	html{
@@ -13,7 +13,7 @@
     <body>
         <center>
         <?php
-			$uname = $_GET["uname"];
+        	$uname = $_GET["uname"];
 			$psw = $_GET["psw"];
 			$servername = "utbweb.its.ltu.se";
 			$username = "19980724";
@@ -31,29 +31,32 @@
 			$user_exist = "SELECT uUserName FROM users WHERE uUserName='$uname'";
 			$user_exist_res = $conn->query($user_exist);
 
-			//Checks if username is already in use
-			if($user_exist_res->num_rows == 0){
+			//Checks if user exists
+			if($user_exist_res->num_rows > 0){
 
-				$sql = "INSERT INTO users (uUserName, uPassword)
-				VALUES ('$uname', '$psw')";
+				//GET PASSWORD FROM DATABASE TABLE
 
-				if ($conn->query($sql) === TRUE) {
-					echo "<h1 style='color:white'>Account created successfully!</h1>";
-				} else {
-				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				if( [CHECK IF PASSWORD MATCH] ){
+					echo "<h1 style='color:white'>Success!</h1>";
+					//href to store page
 				}
+				else{
+					echo "<h1 style='color:white'>Wrong password</h1>";
+				}					
 
 			}
 			else{
-				echo "<h1 style='color:white'>Username already in use</h1>";
+				echo "<h1 style='color:white'>User not found</h1>";
 			}
 
 
 			$conn->close();
 		?>
-		<a href="../html/login.html">
-        	<button class="createAccountButton" type="submit">Go to login page</button>
-        </a>
+		
+		<!--<a href="../html/index.html">
+        	<button class="loginButton" type="submit">Login</button> 
+        
+        </a>-->
         </center>
     </body>
 </html>
