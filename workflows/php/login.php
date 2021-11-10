@@ -13,8 +13,8 @@
     <body>
         <center>
         <?php
-        	$uname = $_GET["uname"];
-			$psw = $_GET["psw"];
+        	$uname = $_POST["uname"];
+			$psw = $_POST["psw"];
 			$servername = "utbweb.its.ltu.se";
 			$username = "19980724";
 			$password = "19980724";
@@ -36,13 +36,23 @@
 
 				//GET PASSWORD FROM DATABASE TABLE
 
-				if( [CHECK IF PASSWORD MATCH] ){
-					echo "<h1 style='color:white'>Success!</h1>";
-					//href to store page
-				}
-				else{
-					echo "<h1 style='color:white'>Wrong password</h1>";
-				}					
+				$result = mysqli_query($conn, "SELECT uPassword FROM users WHERE uUserName='$uname'");
+                if ($row = $result->fetch_assoc()) {
+
+                    if( $row['uPassword'] == $psw ){
+						echo "<h1 style='color:white'>Success!</h1>";
+						echo '<a href="../html/index.html">
+        						<button class="loginButton" type="submit">Continue to Store page</button> 
+        					  </a>';
+					}
+					else{
+						echo "<h1 style='color:white'>Wrong password</h1>";
+						echo '<a href="../html/login.html">
+        						<button class="loginButton" type="submit">Return</button> 
+        					  </a>';
+					}
+
+                }
 
 			}
 			else{
@@ -53,10 +63,7 @@
 			$conn->close();
 		?>
 		
-		<!--<a href="../html/index.html">
-        	<button class="loginButton" type="submit">Login</button> 
-        
-        </a>-->
+		
         </center>
     </body>
 </html>
