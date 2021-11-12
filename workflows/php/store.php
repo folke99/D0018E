@@ -18,6 +18,25 @@
 
 <body>
   
+	<?php
+    	session_start();
+
+		$servername = "utbweb.its.ltu.se";
+		$username = "19980724";
+		$password = "19980724";
+		$dbName = "db19980724";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbName);
+		// Check connection
+		if ($conn->connect_error) {
+		  die("Connection failed: " . $conn->connect_error);
+		}
+
+
+		$conn->close();
+	?>
+
   <header>
     
     <h1> Title </h1>
@@ -27,11 +46,11 @@
   <div id="menu">
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="#">Link2</a></li>
-      <li><a href="#">Link3</a></li>
-      <li><a href="#">Link4</a></li>
       <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
-   </ul> 
+      <li id="user"> <?php echo $_SESSION['username'] ?> </li>
+      <li><a href="../html/login.html" class="menuright">Logout</a></li>
+   </ul>
+   	<p></p> 
   </div>
     
 

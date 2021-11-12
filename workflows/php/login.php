@@ -13,6 +13,8 @@
     <body>
         <center>
         <?php
+        	session_start();
+
         	$uname = $_POST["uname"];
 			$psw = $_POST["psw"];
 			$servername = "utbweb.its.ltu.se";
@@ -40,10 +42,15 @@
                 if ($row = $result->fetch_assoc()) {
 
                     if( $row['uPassword'] == $psw ){
+
+                    	$_SESSION['username'] = $uname;
+
 						echo "<h1 style='color:white'>Success!</h1>";
-						echo '<a href="../html/index.html">
-        						<button class="loginButton" type="submit">Continue to Store page</button> 
-        					  </a>';
+						echo '
+								<a href="store.php">
+	    							<button class="loginButton" type="submit">Continue to Store page</button> 
+	    						</a>
+        					  ';
 					}
 					else{
 						echo "<h1 style='color:white'>Wrong password</h1>";
