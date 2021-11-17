@@ -43,16 +43,16 @@
 
   <header>
     
-    <h1> Title </h1>
+    <h1> Lorem Ipsum </h1>
 
   </header>
 
   <div id="menu">
     <ul>
       <li><a href="#">Home</a></li>
-      <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
-      <li id="user"> <?php echo $_SESSION['username'] ?> </li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
+      <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
+      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li> 
    </ul>
     <p></p> 
   </div>
@@ -68,8 +68,8 @@
         <div class="card">
           <img src="../images/products/apple.png" alt="apples">
           <h1>Apples</h1>
-          <p class="price">$1</p>
-          <p>Some text about apples..</p>
+          <p class="price"> <?php echo $apples ?> </p>
+          <p class="description">Some text about apples..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
@@ -79,7 +79,7 @@
           <img src="../images/products/banana.png" alt="bananas">
           <h1>Bananas</h1>
           <p class="price">$19.99</p>
-          <p>Some text about the bananas..</p>
+          <p class="description">Some text about the bananas..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>  
@@ -89,7 +89,7 @@
           <img src="../images/products/orange.png" alt="oranges">
           <h1>Oranges</h1>
           <p class="price">$19.99</p>
-          <p>Some text about the oranges..</p>
+          <p class="description">Some text about the oranges..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
@@ -104,7 +104,7 @@
           <img src="../images/products/pear.png" alt="pear">
           <h1>Pear</h1>
           <p class="price">$1</p>
-          <p>Some text about Pear..</p>
+          <p class="description">Some text about Pear..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
@@ -114,7 +114,7 @@
           <img src="../images/products/mango.png" alt="mango">
           <h1>Mango</h1>
           <p class="price">$19.99</p>
-          <p>Some text about the mangos..</p>
+          <p class="description">Some text about the mangos..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>  
@@ -124,7 +124,7 @@
           <img src="../images/products/kiwi.png" alt="kiwis">
           <h1>Kiwi</h1>
           <p class="price">$19.99</p>
-          <p>Some text about the kiwis..</p>
+          <p class="description">Some text about the kiwis..</p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
