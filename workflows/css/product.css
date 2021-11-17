@@ -1,4 +1,64 @@
 .productImage {
-    height: 30px;
-    width: 30px;
+    height: 250px;
+    width: 300px;
+}
+
+h1 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.review {
+    grid-area: review; 
+}
+
+.reviews {
+    grid-area: reviews; 
+}
+  
+/* Style the left column */
+.image {
+    grid-area: image; 
+}
+  
+/* Style the right column */
+.info {
+    grid-area: info;
+}
+  
+/* The grid container */
+.gridContainer {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      'image image info info'
+      'review review review review'
+      'reviews reviews reviews reviews';
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+} 
+  
+.image,
+.info,
+.review,
+.reviews {
+    padding: 10px;
+    background-color: rgba(69, 162, 158, 0.7); /* remove */
+    border-radius: 15px;
+    text-align: center;
+}
+  
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+    .gridContainer  {
+      grid-template-areas:
+        'left left left left left left' 
+        'middle middle middle middle middle middle' 
+        'right right right right right right';
+    }
 }

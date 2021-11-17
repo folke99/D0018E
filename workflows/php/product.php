@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="../css/product.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/menu.css">
-  <link rel="stylesheet" href="../css/grid.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,17 +56,30 @@
   <div id="content">
     <div class="gridContainer">
       
-      <div class="left">
+      <div class="image">
         <img class ="productImage" src="../images/apples.jpg">
       </div>
 
-      <div class="right">
+      <div class="info">
         <div class="ProductInfo">
             <h1>Product Information</h1>
             <p>Detta är en product</p>
             <br>
             <p>100 kr</p>
         </div>
+        <div>
+        <button> Add to cart </button>
+        </div>
+      </div>
+
+      <div class="review">
+          <h1>Review</h1>
+          <p>Detta är en product</p>
+      </div>
+
+      <div class="reviews">
+          <h1>Reviews</h1>
+          <p>Detta är en product</p>
       </div>
 
     </div> <!-- gridContainer -->
