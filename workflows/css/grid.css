@@ -17,8 +17,7 @@
 .middle,
 .right {
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-  background-color: rgba(69, 162, 158, 0.7);
+  background-color: rgba(69, 162, 158, 0);
   border-radius: 15px;
   text-align: center;
 }
@@ -65,8 +64,8 @@
   margin: 0 auto;
   margin-bottom: 10px;
 
-  background-image: url(../images/placeholder.png);
-  background-size: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .left button, 
