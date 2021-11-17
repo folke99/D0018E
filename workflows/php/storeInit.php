@@ -31,31 +31,62 @@
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Apple', 1)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Bannana', 2)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Kiwi', 3)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Mango', 4)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Orange', 5)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "INSERT INTO products (pName, pPrice)
 				VALUES ('Pear', 6)";
 
+				if ($conn->query($sql) === TRUE) {
+					echo "<h1 style='color:white'>Account created successfully!</h1>";
+				} else {
+				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				}
 		$sql = "CREATE TABLE reviews( ".
-			            "rID NULL AUTO_INCREMENT".
-			            "uID INT NOT, ".
-			            "pID INT NOT NULL, ".
-			            "rRating INT NOT NULL, ".
-			            "rComment INT NOT NULL, ".
-			            "PRIMARY KEY ( pID )); ";
-			         if ($conn->query($sql)) {
-			            printf("Table products created successfully.<br />");
-		}
+	            "rID NULL AUTO_INCREMENT".
+	            "uID INT NOT, ".
+	            "pID INT NOT NULL, ".
+	            "rRating INT NOT NULL, ".
+	            "rComment INT NOT NULL, ".
+	            "PRIMARY KEY ( pID )); ";
+	         if ($conn->query($sql)) {
+	            printf("Table products created successfully.<br />");
+			}
+
 	?>
 </body>
 </html>
