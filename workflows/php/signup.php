@@ -15,10 +15,10 @@
         <?php
 			$uname = $_GET["uname"];
 			$psw = $_GET["psw"];
-			$servername = "utbweb.its.ltu.se";
-			$username = "19980724";
-			$password = "19980724";
-			$dbName = "db19980724";
+			$servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbName = "D0018E";
 
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbName);
@@ -38,7 +38,7 @@
 				VALUES ('$uname', '$psw')";
 
 				if ($conn->query($sql) === TRUE) {
-					echo "<h1 style='color:white'>Account created successfully!</h1>";
+					header("Location:  ../html/login.html");
 				} else {
 				  	echo "<h1 style='color:white>Failed to create account</h1>";
 				}
@@ -51,9 +51,6 @@
 
 			$conn->close();
 		?>
-		<a href="../html/login.html">
-        	<button class="createAccountButton" type="submit">Go to login page</button>
-        </a>
         </center>
     </body>
 </html>

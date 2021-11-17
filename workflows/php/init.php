@@ -37,7 +37,7 @@
 			            "rComment VARCHAR(100),".
 			            "PRIMARY KEY ( uID, pID )); ";
 			         if ($conn->query($sql)) {
-			            printf("Table review created successfully.<br />");
+			            printf("Table reviews created successfully.<br />");
 			         }
 
 
