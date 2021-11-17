@@ -49,6 +49,10 @@ a img{
 }
 
 span{
-  margin-left: 10%;
+  margin-left: 4%;
   text-align: center;
+}
+
+li#user{
+  font-size: 0.9em;
 }
