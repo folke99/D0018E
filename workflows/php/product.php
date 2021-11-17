@@ -45,7 +45,7 @@
 
   <div id="menu">
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><a href="../html/index.html">Home</a></li>
       <li><a href="../html/product.html" class="img"><img src="../images/cart.png"></a></li>
       <li id="user"> <?php echo $_SESSION['username'] ?> </li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
@@ -57,7 +57,7 @@
     <div class="gridContainer">
       
       <div class="image">
-        <img class ="productImage" src="../images/apples.jpg">
+        <img class ="productImage" src="../images/products/apple.png">
       </div>
 
       <div class="info">
@@ -71,11 +71,22 @@
         <button> Add to cart </button>
         </div>
       </div>
+      <form action="../php/sendReview.php">
+        <div class="rComment">
+          <label for="rComment"><h2>Review</h2></label>
+          <textarea type="text" placeholder="Enter Review" required></textarea>
+        </div>
 
-      <div class="review">
-          <h1>Review</h1>
-          <p>Detta är en product</p>
-      </div>
+        <div class="rRating">
+          <label for="rRating"><h2>Rate</h2></label>
+          <input type="text" placeholder="Enter Rate" required>
+        </div>
+
+        <div class="sendButton">
+          <label for="Send"><h2>Send</h2></label>
+          <button> Send </button>
+        </div>
+      </form>
 
       <div class="reviews">
           <h1>Reviews</h1>

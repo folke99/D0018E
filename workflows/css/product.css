@@ -1,9 +1,27 @@
+form {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    background-color: aqua;
+}
+
 .productImage {
     height: 250px;
     width: 300px;
 }
 
-h1 {
+.rComment [type=text] {
+    padding: 12px 20px;
+    width: 90%;
+}
+
+.rRating [type=text] {
+    padding: 12px 20px;
+    width: 30%;
+}
+
+h1, 
+h2 {
     color: white;
 }
 
@@ -11,31 +29,36 @@ p {
     color: white;
 }
 
-.review {
-    grid-area: review; 
+.send {
+    grid-area: send;
+}
+
+.rRating {
+    grid-area: rRating;
+}
+
+.rComment {
+    grid-area: rComment; 
 }
 
 .reviews {
     grid-area: reviews; 
 }
-  
-/* Style the left column */
+
 .image {
     grid-area: image; 
 }
-  
-/* Style the right column */
+
 .info {
     grid-area: info;
 }
-  
-/* The grid container */
+
 .gridContainer {
     display: grid;
     grid-template-rows: auto;
     grid-template-areas: 
       'image image info info'
-      'review review review review'
+      'rComment rComment rRating send'
       'reviews reviews reviews reviews';
     grid-column-gap: 20px;
     grid-row-gap: 20px;
@@ -45,10 +68,8 @@ p {
   
 .image,
 .info,
-.review,
 .reviews {
     padding: 10px;
-    background-color: rgba(69, 162, 158, 0.7); /* remove */
     border-radius: 15px;
     text-align: center;
 }
