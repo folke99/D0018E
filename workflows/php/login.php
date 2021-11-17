@@ -17,10 +17,10 @@
 
         	$uname = $_POST["uname"];
 			$psw = $_POST["psw"];
-			$servername = "utbweb.its.ltu.se";
-			$username = "19980724";
-			$password = "19980724";
-			$dbName = "db19980724";
+			$servername = "localhost";
+			$username = "root";
+			$password = "";
+			$dbName = "D0018E";
 
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbName);
@@ -44,13 +44,7 @@
                     if( $row['uPassword'] == $psw ){
 
                     	$_SESSION['username'] = $uname;
-
-						echo "<h1 style='color:white'>Success!</h1>";
-						echo '
-								<a href="store.php">
-	    							<button class="loginButton" type="submit">Continue to Store page</button> 
-	    						</a>
-        					  ';
+						header("Location:  ../html/index.html");
 					}
 					else{
 						echo "<h1 style='color:white'>Wrong password</h1>";
