@@ -34,8 +34,15 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $apples = mysqli_query($conn, "SELECT price FROM products WHERE pName='apple'");
+    $apples = mysqli_query($conn, "SELECT pPrice FROM products WHERE pName='Apple'");
 
+    $row = mysqli_fetch_array($apples);
+
+    if ($row = $apples->fetch_assoc()) {
+      if ($row['pName'] == "Apples") {
+        $apples = $row['pPrice'];
+      }
+    }
 
 
     $conn->close();
@@ -68,7 +75,11 @@
         <div class="card">
           <img src="../images/products/apple.png" alt="apples">
           <h1>Apples</h1>
-          <p class="price"> <?php echo $apples ?> </p>
+          <p class="price"> 
+            <?php  
+                echo $row['pPrice'];
+            ?> 
+          </p>
           <p class="description">Some text about apples..</p>
           <p><button>Add to Cart</button></p>
         </div>
