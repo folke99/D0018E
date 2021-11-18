@@ -1,10 +1,10 @@
 <html>
 	<body>
 		<?php
-			$dbName = 'd0018e';
-			$servername = 'localhost';
-			$username = 'root';
-			$password = '';
+			$servername = "utbweb.its.ltu.se";
+			$username = "19980724";
+			$password = "19980724";
+			$dbName = "db19980724";
 
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbName);
@@ -31,11 +31,11 @@
 			            printf("Table cart created successfully.<br />");
 			         }
 			$sql = "CREATE TABLE reviews( ".
-			            "uID INT NOT NULL, ".
-			            "pID INT NOT NULL, ".
+			            "ruID INT NOT NULL, ".
+			            "rpID INT NOT NULL, ".
 			            "rRating INT NOT NULL, ".
 			            "rComment VARCHAR(100),".
-			            "PRIMARY KEY ( uID, pID )); ";
+			            "PRIMARY KEY ( ruID, rpID )); ";
 			         if ($conn->query($sql)) {
 			            printf("Table reviews created successfully.<br />");
 			         }

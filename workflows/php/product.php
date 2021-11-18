@@ -17,31 +17,42 @@
 </head>
 
 <body>
-  
-	<?php
+
+  <?php
     session_start();
 
-		$servername = "utbweb.its.ltu.se";
-		$username = "19980724";
-		$password = "19980724";
-		$dbName = "db19980724";
+    $servername = "utbweb.its.ltu.se";
+    $username = "19980724";
+    $password = "19980724";
+    $dbName = "db19980724";
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbName);
-		// Check connection
-		if ($conn->connect_error) {
-		  die("Connection failed: " . $conn->connect_error);
-		}
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbName);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-    $reviews = mysqli_query($conn, "SELECT rComment FROM reviews");
-	  while($row = mysqli_fetch_array($reviews)){
+    $array = array();
 
-		  $review = $row['rComment'];
-	  }
+    $reviews = mysqli_query($conn, "SELECT ruID, rRating, rComment FROM reviews");
 
-		$conn->close();
-    
-	?>
+    while($row = mysqli_fetch_array($reviews)){
+        
+      $ruID = $row['ruID'];
+      $rRating = $row['rRating'];
+      $review = $row['rComment'];
+
+      $users = mysqli_query($conn, "SELECT uUserName FROM users WHERE uID='$ruID'");
+      if($row1 = mysqli_fetch_array($users)){
+        $uUserName = $row1['uUserName'];
+      }
+
+      $temp = 'User: '. $uUserName. '&emsp;'. 'Review: '. $review. '&emsp;'. 'Rating: '. $rRating. '<br>'. '<br>';
+      array_push($array, $temp);
+    }
+    $conn->close();
+  ?>
 
   <header>
     
@@ -103,7 +114,9 @@
           <h1>Reviews</h1>
           <p>
             <?php
-              echo $review;
+              foreach( $array as $userReview ) {
+                echo $userReview;
+              }
             ?>
           </p>
       </div>
