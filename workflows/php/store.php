@@ -52,38 +52,38 @@
       //Product ID 1
       $p1_name = $row1['pName'];
       $p1_price = $row1['pPrice'];
-      //$p1_description = $row1['pDescription'];
-      //$p1_img = $row1['pImg'];
+      $p1_description = $row1['pDescription'];
+      $p1_img = $row1['pImg'];
 
       //Product ID 2
       $p2_name = $row2['pName'];
       $p2_price = $row2['pPrice'];
-      //$p2_description = $row2['pDescription'];
-      //$p2_img = $row2['pImg'];
+      $p2_description = $row2['pDescription'];
+      $p2_img = $row2['pImg'];
 
       //Product ID 3
       $p3_name = $row3['pName'];
       $p3_price = $row3['pPrice'];
-      //$p3_description = $row3['pDescription'];
-      //$p3_img = $row3['pImg'];
+      $p3_description = $row3['pDescription'];
+      $p3_img = $row3['pImg'];
 
       //Product ID 4
       $p4_name = $row4['pName'];
       $p4_price = $row4['pPrice'];
-      //$p4_description = $row4['pDescription'];
-      //$p4_img = $row4['pImg'];
+      $p4_description = $row4['pDescription'];
+      $p4_img = $row4['pImg'];
 
       //Product ID 5
       $p5_name = $row5['pName'];
       $p5_price = $row5['pPrice'];
-      //$p5_description = $row5['pDescription'];
-      //$p5_img = $row5['pImg'];
+      $p5_description = $row5['pDescription'];
+      $p5_img = $row5['pImg'];
 
       //Product ID 6
       $p6_name = $row6['pName'];
       $p6_price = $row6['pPrice'];
-      //$p6_description = $row6['pDescription'];
-      //$p6_img = $row6['pImg'];
+      $p6_description = $row6['pDescription'];
+      $p6_img = $row6['pImg'];
 
     }
 
@@ -115,7 +115,7 @@
       
       <div class="left">
         <div class="card">
-          <a href="product.php" class="reviewPage"><img src="../images/products/apple.png" alt="apples"></a>
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p1_img ?>" alt="<?php echo $p1_name ?>"></a>
           <h1>
             <?php
               echo $p1_name;
@@ -126,14 +126,18 @@
                 echo $p1_price;
             ?> 
           </p>
-          <p class="description">Some text about apples..</p>
+          <p class="description">
+            <?php  
+                echo $p1_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
 
       <div class="middle">
         <div class="card">
-          <img src="../images/products/banana.png" alt="bananas">
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p2_img ?>" alt="<?php echo $p2_name ?>"></a>
           <h1>
             <?php
               echo $p2_name;
@@ -144,14 +148,18 @@
                 echo $p2_price;
             ?> 
           </p>
-          <p class="description">Some text about the bananas..</p>
+          <p class="description">
+            <?php  
+                echo $p2_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>  
 
       <div class="right">
         <div class="card">
-          <img src="../images/products/orange.png" alt="oranges">
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p3_img ?>" alt="<?php echo $p3_name ?>"></a>
           <h1>
             <?php
               echo $p3_name;
@@ -162,7 +170,11 @@
                 echo $p3_price;
             ?> 
           </p>
-          <p class="description">Some text about the oranges..</p>
+          <p class="description">
+            <?php  
+                echo $p3_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
@@ -174,7 +186,7 @@
       
       <div class="left">
         <div class="card">
-          <img src="../images/products/pear.png" alt="pear">
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p4_img ?>" alt="<?php echo $p4_name ?>"></a>
           <h1>
             <?php
               echo $p4_name;
@@ -185,14 +197,18 @@
                 echo $p4_price;
             ?> 
           </p>
-          <p class="description">Some text about Pear..</p>
+          <p class="description">
+            <?php  
+                echo $p4_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
 
       <div class="middle">
         <div class="card">
-          <img src="../images/products/mango.png" alt="mango">
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p5_img ?>" alt="<?php echo $p5_name ?>"></a>
           <h1>
             <?php
               echo $p5_name;
@@ -203,14 +219,18 @@
                 echo $p5_price;
             ?> 
           </p>
-          <p class="description">Some text about the mangos..</p>
+          <p class="description">
+            <?php  
+                echo $p5_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>  
 
       <div class="right">
         <div class="card">
-          <img src="../images/products/kiwi.png" alt="kiwis">
+          <a href="product.php" class="reviewPage"><img src="<?php echo $p6_img ?>" alt="<?php echo $p6_name ?>"></a>
           <h1>
             <?php
               echo $p6_name;
@@ -221,7 +241,11 @@
                 echo $p6_price;
             ?> 
           </p>
-          <p class="description">Some text about the kiwis..</p>
+          <p class="description">
+            <?php  
+                echo $p6_description;
+            ?> 
+          </p>
           <p><button>Add to Cart</button></p>
         </div>
       </div>
