@@ -34,16 +34,58 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    $apples = mysqli_query($conn, "SELECT pPrice FROM products WHERE pName='Apple'");
+    $p1 = mysqli_query($conn, "SELECT * FROM products WHERE pID='1'");
+    $p2 = mysqli_query($conn, "SELECT * FROM products WHERE pID='2'");
+    $p3 = mysqli_query($conn, "SELECT * FROM products WHERE pID='3'");
+    $p4 = mysqli_query($conn, "SELECT * FROM products WHERE pID='4'");
+    $p5 = mysqli_query($conn, "SELECT * FROM products WHERE pID='5'");
+    $p6 = mysqli_query($conn, "SELECT * FROM products WHERE pID='6'");
 
-    while($row = mysqli_fetch_array($apples)){
+    while($row1 = mysqli_fetch_array($p1) and
+          $row2 = mysqli_fetch_array($p2) and
+          $row3 = mysqli_fetch_array($p3) and
+          $row4 = mysqli_fetch_array($p4) and
+          $row5 = mysqli_fetch_array($p5) and
+          $row6 = mysqli_fetch_array($p6)
+    ){
 
-      $apple_price = $row['pPrice'];
+      //Product ID 1
+      $p1_name = $row1['pName'];
+      $p1_price = $row1['pPrice'];
+      //$p1_description = $row1['pDescription'];
+      //$p1_img = $row1['pImg'];
+
+      //Product ID 2
+      $p2_name = $row2['pName'];
+      $p2_price = $row2['pPrice'];
+      //$p2_description = $row2['pDescription'];
+      //$p2_img = $row2['pImg'];
+
+      //Product ID 3
+      $p3_name = $row3['pName'];
+      $p3_price = $row3['pPrice'];
+      //$p3_description = $row3['pDescription'];
+      //$p3_img = $row3['pImg'];
+
+      //Product ID 4
+      $p4_name = $row4['pName'];
+      $p4_price = $row4['pPrice'];
+      //$p4_description = $row4['pDescription'];
+      //$p4_img = $row4['pImg'];
+
+      //Product ID 5
+      $p5_name = $row5['pName'];
+      $p5_price = $row5['pPrice'];
+      //$p5_description = $row5['pDescription'];
+      //$p5_img = $row5['pImg'];
+
+      //Product ID 6
+      $p6_name = $row6['pName'];
+      $p6_price = $row6['pPrice'];
+      //$p6_description = $row6['pDescription'];
+      //$p6_img = $row6['pImg'];
 
     }
-
-    
-
 
     $conn->close();
   ?>
@@ -73,11 +115,15 @@
       
       <div class="left">
         <div class="card">
-          <img src="../images/products/apple.png" alt="apples">
-          <h1>Apples</h1>
+          <a href="product.php" class="reviewPage"><img src="../images/products/apple.png" alt="apples"></a>
+          <h1>
+            <?php
+              echo $p1_name;
+            ?>
+          </h1>
           <p class="price">$ 
             <?php  
-                echo $apple_price;
+                echo $p1_price;
             ?> 
           </p>
           <p class="description">Some text about apples..</p>
@@ -88,8 +134,16 @@
       <div class="middle">
         <div class="card">
           <img src="../images/products/banana.png" alt="bananas">
-          <h1>Bananas</h1>
-          <p class="price">$19.99</p>
+          <h1>
+            <?php
+              echo $p2_name;
+            ?>
+          </h1>
+          <p class="price">$ 
+            <?php  
+                echo $p2_price;
+            ?> 
+          </p>
           <p class="description">Some text about the bananas..</p>
           <p><button>Add to Cart</button></p>
         </div>
@@ -98,8 +152,16 @@
       <div class="right">
         <div class="card">
           <img src="../images/products/orange.png" alt="oranges">
-          <h1>Oranges</h1>
-          <p class="price">$19.99</p>
+          <h1>
+            <?php
+              echo $p3_name;
+            ?>
+          </h1>
+          <p class="price">$ 
+            <?php  
+                echo $p3_price;
+            ?> 
+          </p>
           <p class="description">Some text about the oranges..</p>
           <p><button>Add to Cart</button></p>
         </div>
@@ -113,8 +175,16 @@
       <div class="left">
         <div class="card">
           <img src="../images/products/pear.png" alt="pear">
-          <h1>Pear</h1>
-          <p class="price">$1</p>
+          <h1>
+            <?php
+              echo $p4_name;
+            ?>
+          </h1>
+          <p class="price">$ 
+            <?php  
+                echo $p4_price;
+            ?> 
+          </p>
           <p class="description">Some text about Pear..</p>
           <p><button>Add to Cart</button></p>
         </div>
@@ -123,8 +193,16 @@
       <div class="middle">
         <div class="card">
           <img src="../images/products/mango.png" alt="mango">
-          <h1>Mango</h1>
-          <p class="price">$19.99</p>
+          <h1>
+            <?php
+              echo $p5_name;
+            ?>
+          </h1>
+          <p class="price">$ 
+            <?php  
+                echo $p5_price;
+            ?> 
+          </p>
           <p class="description">Some text about the mangos..</p>
           <p><button>Add to Cart</button></p>
         </div>
@@ -133,8 +211,16 @@
       <div class="right">
         <div class="card">
           <img src="../images/products/kiwi.png" alt="kiwis">
-          <h1>Kiwi</h1>
-          <p class="price">$19.99</p>
+          <h1>
+            <?php
+              echo $p6_name;
+            ?>
+          </h1>
+          <p class="price">$ 
+            <?php  
+                echo $p6_price;
+            ?> 
+          </p>
           <p class="description">Some text about the kiwis..</p>
           <p><button>Add to Cart</button></p>
         </div>
