@@ -19,7 +19,7 @@
 <body>
   
 	<?php
-    	session_start();
+    session_start();
 
 		$servername = "utbweb.its.ltu.se";
 		$username = "19980724";
@@ -33,8 +33,14 @@
 		  die("Connection failed: " . $conn->connect_error);
 		}
 
+    $reviews = mysqli_query($conn, "SELECT rComment FROM reviews");
+	  while($row = mysqli_fetch_array($reviews)){
+
+		  $review = $row['rComment'];
+	  }
 
 		$conn->close();
+    
 	?>
 
   <header>
@@ -67,19 +73,24 @@
             <br>
             <p>100 kr</p>
         </div>
+
         <div>
         <button> Add to cart </button>
         </div>
       </div>
-      <form action="../php/sendReview.php">
+
+      <form action="../php/sendReview.php" method="GET">
+        <label for="product"><h2>pID</h2></label>
+        <input type="text" name="product" required>
+
         <div class="rComment">
           <label for="rComment"><h2>Review</h2></label>
-          <textarea type="text" placeholder="Enter Review" required></textarea>
+          <textarea type="text" placeholder="Enter Review" name="rComment" required></textarea>
         </div>
 
         <div class="rRating">
           <label for="rRating"><h2>Rate</h2></label>
-          <input type="text" placeholder="Enter Rate" required>
+          <input type="text" placeholder="Enter Rate" name="rRating" required>
         </div>
 
         <div class="sendButton">
@@ -90,7 +101,11 @@
 
       <div class="reviews">
           <h1>Reviews</h1>
-          <p>Detta är en product</p>
+          <p>
+            <?php
+              echo $review;
+            ?>
+          </p>
       </div>
 
     </div> <!-- gridContainer -->
