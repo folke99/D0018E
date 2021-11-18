@@ -36,13 +36,13 @@
 
     $apples = mysqli_query($conn, "SELECT pPrice FROM products WHERE pName='Apple'");
 
-    $row = mysqli_fetch_array($apples);
+    while($row = mysqli_fetch_array($apples)){
 
-    if ($row = $apples->fetch_assoc()) {
-      if ($row['pName'] == "Apples") {
-        $apples = $row['pPrice'];
-      }
+      $apple_price = $row['pPrice'];
+
     }
+
+    
 
 
     $conn->close();
@@ -75,9 +75,9 @@
         <div class="card">
           <img src="../images/products/apple.png" alt="apples">
           <h1>Apples</h1>
-          <p class="price"> 
+          <p class="price">$ 
             <?php  
-                echo $row['pPrice'];
+                echo $apple_price;
             ?> 
           </p>
           <p class="description">Some text about apples..</p>

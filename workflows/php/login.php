@@ -44,7 +44,7 @@
                     if( $row['uPassword'] == $psw ){
 
                     	$_SESSION['username'] = $uname;
-						header("Location:  ../html/index.html");
+						header("Location: store.php");
 					}
 					else{
 						echo "<h1 style='color:white'>Wrong password</h1>";
