@@ -1,10 +1,10 @@
 <html>
 	<body>
 		<?php
-			$servername = "utbweb.its.ltu.se";
-		    $username = "19980724";
-		    $password = "19980724";
-		    $dbName = "db19980724";
+			$dbName = 'd0018e';
+			$servername = 'localhost';
+			$username = 'root';
+			$password = '';
 
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbName);
@@ -46,60 +46,85 @@
 			            "pName VARCHAR(20) NOT NULL, ".
 			            "pOverallRating INT NOT NULL, ".
 			            "pPrice INT NOT NULL, ".
+			            "pDescription VARCHAR(200) NOT NULL,".
+			            "pImg VARCHAR(100) NOT NULL,".
 			            "PRIMARY KEY ( pID )); ";
 			         if ($conn->query($sql)) {
 			            printf("Table products created successfully.<br />");
 			         }
+			         else{
+			         	 printf("Error product table creation.<br />");
+			         }
 
 /****************************************************************************************************************************/
 
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Apple', 1, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Apple', 1, 0, 'Rund röd grej går att äta', '../images/products/apple.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account1</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Bannana', 2, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Banana',
+							2,
+							0,
+							'Gul böjd grej, skala först!',
+							'../images/products/banana.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account2</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Kiwi', 3, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Kiwi',
+							3,
+							0,
+							'Hårig liten boll liknande frukt',
+							'../images/products/kiwi.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account3</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Mango', 4, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Mango',
+							4,
+							0,
+							'Gul på insidan, stor som en stor tennisboll',
+							'../images/products/mango.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account4</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Orange', 5, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Orange',
+							5,
+							0,
+							'Gul på utsidan, stor som en normalstor tennisboll',
+							'../images/products/orange.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account5</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating)
-					VALUES ('Pear', 6, 0)";
+			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+					VALUES ('Pear',
+							6,
+							0,
+							'Grön frukn som är päron formad',
+							'../images/products/pear.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
-					  	echo "<h1 style='color:white>Failed to create account</h1>";
+					  	echo "<h1 style='color:white>Failed to create account6</h1>";
 					}
 
 			$conn->close();
