@@ -33,7 +33,7 @@
     VALUES ('$uID', '$pID', '$rRating', '$rComment')";
 
 	if ($conn->query($sql) == TRUE) {
-		header("Location:  product.php");
+		header("Location:  product.php?pID=$pID");
 	} else {
 	  echo "<h1 style='color:Black>Failed to create review</h1>";
 }
