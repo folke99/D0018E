@@ -3,7 +3,7 @@
 		<?php
 			$servername = "utbweb.its.ltu.se";
 			$username = "19980724";
-			$password = "19980724";
+			$password = "";
 			$dbName = "db19980724";
 		
 			// Create connection
