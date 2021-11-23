@@ -15,6 +15,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 
+  <style type="text/css">
+    
+    .gridContainer .card a{
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .gridContainer .card a img{
+      margin: 0 auto;
+    }
+
+  </style>
+
 </head>
 
 <body>
