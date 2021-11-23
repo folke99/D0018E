@@ -25,6 +25,7 @@
     $username = "19980724";
     $password = "19980724";
     $dbName = "db19980724";
+    $uname = $_SESSION['username'];
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbName);
@@ -36,6 +37,11 @@
     $pID = $_GET["pID"];
 
     $array = array();
+
+    $uID_res = mysqli_query($conn, "SELECT uID FROM users WHERE uUserName = '$uname'");
+    while($row0 = mysqli_fetch_array($uID_res)){
+        $uID = $row0['uID'];
+    }
 
     $reviews = mysqli_query($conn, "SELECT ruID, rRating, rComment FROM reviews WHERE rpID=$pID");
 
@@ -64,10 +70,6 @@
       $pDescription = $row['pDescription'];
       $pImg = $row['pImg'];
     }
-
-    
-
-    $conn->close();
   ?>
 
   <header>
@@ -106,26 +108,48 @@
         </div>
       </div>
 
-      <form action="../php/sendReview.php" method="GET">
+      <?php 
+        //error_reporting(E_ERROR | E_PARSE);
+        $uReview = mysqli_query($conn, "SELECT * FROM reviews WHERE ruID='$uID'AND rpID='$pID'");
+        $ruID1 = '0';
+        while($row2 = mysqli_fetch_array($uReview)){
+          $ruID1 = $row2['ruID'];
+          $rpID1 = $row2['rpID'];
+        }
+          
+        if($ruID1 == $uID){
+          echo 'Du har redan skrivit en review.';
+        }
+        else{
+          echo <<<HTML
 
-        <div class="rComment">
-          <label for="rComment"><h2>Review</h2></label>
-          <textarea type="text" placeholder="Enter Review" name="rComment" required></textarea>
-        </div>
+          <form action="../php/sendReview.php" method="GET">
 
-        <div class="rRating">
-          <label for="rRating"><h2>Rate</h2></label>
-          <input type="text" placeholder="Enter Rate" name="rRating" required>
-        </div>
+            <div class="rComment">
+              <label for="rComment"><h2>Review</h2></label>
+              <textarea type="text" placeholder="Enter Review" name="rComment" required></textarea>
+            </div>
+    
+            <div class="rRating">
+              <label for="rRating"><h2>Rate</h2></label>
+              <input type="text" placeholder="Enter Rate" name="rRating" required>
+            </div>
+    
+            <input type="hidden" name="pID" value="$pID">
+    
+            <div class="sendButton">
+              <label for="Send"><h2>Send</h2></label>
+              <button> Send </button>
+            </div>
+            
+          </form>
 
-        <input type="hidden" name="pID" value=" <?php echo $pID; ?> ">
-
-        <div class="sendButton">
-          <label for="Send"><h2>Send</h2></label>
-          <button> Send </button>
-        </div>
+          HTML;
+        }
         
-      </form>
+        
+        $conn->close();
+      ?>
 
       <div class="reviews">
           <h1>Reviews</h1>
