@@ -67,6 +67,8 @@
 
       $i = 1;
 
+      //Generate products to display (multiple of 3)
+
       while ($i < $max) {
 
         $p1 = mysqli_query($conn, "SELECT * FROM products WHERE pID=$i");
@@ -79,18 +81,21 @@
             ){
 
           //Product ID i
+          $p1_ID = $row1['pID'];
           $p1_name = $row1['pName'];
           $p1_price = $row1['pPrice'];
           $p1_description = $row1['pDescription'];
           $p1_img = $row1['pImg'];
 
           //Product ID i+1
+          $p2_ID = $row2['pID'];
           $p2_name = $row2['pName'];
           $p2_price = $row2['pPrice'];
           $p2_description = $row2['pDescription'];
           $p2_img = $row2['pImg'];
 
           //Product ID i+2
+          $p3_ID = $row3['pID'];
           $p3_name = $row3['pName'];
           $p3_price = $row3['pPrice'];
           $p3_description = $row3['pDescription'];
@@ -104,7 +109,7 @@
       
           <div class="left">
             <div class="card">
-              <a href="product.php" class="reviewPage"><img src="$p1_img" alt="$p1_name"></a>
+              <a href="product.php?pID=$p1_ID" class="reviewPage"><img src="$p1_img" alt="$p1_name"></a>
               <h1> $p1_name </h1>
               <p class="price">$ $p1_price</p>
               <p class="description"> $p1_description </p>
@@ -114,7 +119,7 @@
 
           <div class="middle">
             <div class="card">
-              <a href="product.php" class="reviewPage"><img src="$p2_img" alt="$p2_name"></a>
+              <a href="product.php?pID=$p2_ID" class="reviewPage"><img src="$p2_img" alt="$p2_name"></a>
               <h1> $p2_name </h1>
               <p class="price">$ $p2_price</p>
               <p class="description"> $p2_description </p>
@@ -124,7 +129,7 @@
 
           <div class="right">
             <div class="card">
-              <a href="product.php" class="reviewPage"><img src="$p3_img" alt="$p3_name"></a>
+              <a href="product.php?pID=$p3_ID" class="reviewPage"><img src="$p3_img" alt="$p3_name"></a>
               <h1> $p3_name </h1>
               <p class="price">$ $p3_price</p>
               <p class="description"> $p3_description </p>

@@ -3,7 +3,7 @@
 
     $rComment = $_GET["rComment"];
     $rRating = $_GET["rRating"];
-	$pID = $_GET['product'];
+	$pID = $_GET['pID'];
 	$uname = $_SESSION['username'];
 
     $servername = "utbweb.its.ltu.se";

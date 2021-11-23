@@ -33,9 +33,11 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
+    $pID = $_GET["pID"];
+
     $array = array();
 
-    $reviews = mysqli_query($conn, "SELECT ruID, rRating, rComment FROM reviews");
+    $reviews = mysqli_query($conn, "SELECT ruID, rRating, rComment FROM reviews WHERE rpID=$pID");
 
     while($row = mysqli_fetch_array($reviews)){
         
@@ -51,6 +53,20 @@
       $temp = 'User: '. $uUserName. '&emsp;'. 'Review: '. $review. '&emsp;'. 'Rating: '. $rRating. '<br>'. '<br>';
       array_push($array, $temp);
     }
+
+    //Get all information about the product from database
+
+    $get_info = mysqli_query($conn, "SELECT * FROM products WHERE pID=$pID");
+
+    while($row = mysqli_fetch_array($get_info)){
+      $pName = $row['pName'];
+      $pPrice = $row['pPrice'];
+      $pDescription = $row['pDescription'];
+      $pImg = $row['pImg'];
+    }
+
+    
+
     $conn->close();
   ?>
 
@@ -62,10 +78,10 @@
 
   <div id="menu">
     <ul>
-      <li><a href="../html/index.html">Home</a></li>
-      <li><a href="../html/product.html" class="img"><img src="../images/cart.png"></a></li>
-      <li id="user"> <?php echo $_SESSION['username'] ?> </li>
+      <li><a href="store.php">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
+      <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
+      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li> 
    </ul>
    	<br>
   </div>
@@ -74,15 +90,15 @@
     <div class="gridContainer">
       
       <div class="image">
-        <img class ="productImage" src="../images/products/apple.png">
+        <img class ="productImage" src="<?php echo $pImg; ?>">
       </div>
 
       <div class="info">
         <div class="ProductInfo">
-            <h1>Product Information</h1>
-            <p>Detta är en product</p>
+            <h1><?php echo $pName; ?></h1>
+            <p><?php echo $pDescription; ?></p>
             <br>
-            <p>100 kr</p>
+            <p>$ <?php echo $pPrice; ?></p>
         </div>
 
         <div>
@@ -91,8 +107,6 @@
       </div>
 
       <form action="../php/sendReview.php" method="GET">
-        <label for="product"><h2>pID</h2></label>
-        <input type="text" name="product" required>
 
         <div class="rComment">
           <label for="rComment"><h2>Review</h2></label>
@@ -104,10 +118,13 @@
           <input type="text" placeholder="Enter Rate" name="rRating" required>
         </div>
 
+        <input type="hidden" name="pID" value=" <?php echo $pID; ?> ">
+
         <div class="sendButton">
           <label for="Send"><h2>Send</h2></label>
           <button> Send </button>
         </div>
+        
       </form>
 
       <div class="reviews">
