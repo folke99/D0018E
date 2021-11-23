@@ -16,15 +16,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 
   <style type="text/css">
+
+    .gridContainer .card{
+      border-radius: 10px;
+    }
     
     .gridContainer .card a{
       width: 100%;
-      padding: 0;
-      margin: 0;
+      padding: 5px;
+      margin-bottom: 3px;
+      border-radius: 10px;
+      transition: 0.3s;
     }
 
     .gridContainer .card a img{
       margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .gridContainer .card a:hover{
+      transform: scale(1.05);
     }
 
   </style>
