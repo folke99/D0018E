@@ -71,17 +71,7 @@
 
     <?php
 
-      $servername = "utbweb.its.ltu.se";
-      $username = "19980724";
-      $password = "";
-      $dbName = "db19980724";
-
-      // Create connection
-      $conn = new mysqli($servername, $username, $password, $dbName);
-      // Check connection
-      if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-      }
+      include('databaseConnection.php');
 
       //Check how many products are in the database
       $result =  mysqli_query($conn,"SELECT COUNT(*) FROM products");

@@ -5,18 +5,7 @@
     $rRating = $_GET["rRating"];
 	$pID = $_GET['pID'];
 	$uname = $_SESSION['username'];
-
-    $servername = "utbweb.its.ltu.se";
-	$username = "19980724";
-	$password = "";
-	$dbName = "db19980724";
-
-    // Create connection
-	$conn = new mysqli($servername, $username, $password, $dbName);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	}
+	include('databaseConnection.php');
 
 	$userID = mysqli_query($conn, "SELECT uID FROM users WHERE uUserName = '$uname'");
 	if (!$userID) {

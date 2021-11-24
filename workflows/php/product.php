@@ -19,20 +19,9 @@
 <body>
 
   <?php
+    include('databaseConnection.php');
     session_start();
-
-    $servername = "utbweb.its.ltu.se";
-    $username = "19980724";
-    $password = "";
-    $dbName = "db19980724";
     $uname = $_SESSION['username'];
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbName);
-    // Check connection
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
 
     $pID = $_GET["pID"];
 

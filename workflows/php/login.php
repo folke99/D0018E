@@ -17,17 +17,7 @@
 
         	$uname = $_POST["uname"];
 			$psw = $_POST["psw"];
-			$servername = "utbweb.its.ltu.se";
-			$username = "19980724";
-			$password = "";
-			$dbName = "db19980724";
-
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbName);
-			// Check connection
-			if ($conn->connect_error) {
-			  die("Connection failed: " . $conn->connect_error);
-			}
+			include('databaseConnection.php');
 
 			//Looks for usename in table
 			$user_exist = "SELECT uUserName FROM users WHERE uUserName='$uname'";

@@ -1,17 +1,7 @@
 <html>
 	<body>
 		<?php
-			$servername = "utbweb.its.ltu.se";
-			$username = "19980724";
-			$password = "";
-			$dbName = "db19980724";
-		
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbName);
-			// Check connection
-			if ($conn->connect_error) {
-			  die("Connection failed: " . $conn->connect_error);
-			}
+			include('databaseConnection.php');
 			$sql = "CREATE TABLE users( ".
 			            "uID INT NOT NULL AUTO_INCREMENT, ".
 			            "uUserName VARCHAR(20) NOT NULL, ".
@@ -22,14 +12,24 @@
 			         }
 
 			$sql = "CREATE TABLE cart( ".
-			            "uID INT NOT NULL,".
-			            "pID INT NOT NULL, ".
-			            "pPrice INT NOT NULL, ".
-			            "cQuantity INT NOT NULL,".
-			            "PRIMARY KEY ( uID )); ";
+			            "cID INT NOT NULL AUTO_INCREMENT,".
+			            "cuID INT NOT NULL,".
+			            "PRIMARY KEY (cID)); ";
 			         if ($conn->query($sql)) {
 			            printf("Table cart created successfully.<br />");
 			         }
+			         else{
+			         	echo "cart not successfull";
+			         }
+
+			$sql = "CREATE TABLE cartItem( ".
+			            "ciID INT NOT NULL,".
+			            "cipID INT NOT NULL, ".
+			            "ciQuantity INT NOT NULL);";
+			         if ($conn->query($sql)) {
+			            printf("Table cart created successfully.<br />");
+			         }
+
 			$sql = "CREATE TABLE reviews( ".
 			            "ruID INT NOT NULL, ".
 			            "rpID INT NOT NULL, ".
