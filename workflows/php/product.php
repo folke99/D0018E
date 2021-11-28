@@ -33,7 +33,6 @@
     }
 
     $reviews = mysqli_query($conn, "SELECT ruID, rRating, rComment FROM reviews WHERE rpID=$pID");
-
     while($row = mysqli_fetch_array($reviews)){
         
       $ruID = $row['ruID'];
@@ -71,7 +70,7 @@
     <ul>
       <li><a href="store.php">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
-      <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
+      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
       <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li> 
    </ul>
    	<br>
@@ -98,7 +97,6 @@
       </div>
 
       <?php 
-        //error_reporting(E_ERROR | E_PARSE);
         $uReview = mysqli_query($conn, "SELECT * FROM reviews WHERE ruID='$uID'AND rpID='$pID'");
         $ruID1 = '0';
         while($row2 = mysqli_fetch_array($uReview)){

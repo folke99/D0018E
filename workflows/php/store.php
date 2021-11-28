@@ -58,7 +58,7 @@
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
-      <li><a href="#" class="img"><img src="../images/cart.png"></a></li>
+      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
       <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li> 
    </ul>
     <p></p> 
