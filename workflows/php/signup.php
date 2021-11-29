@@ -29,6 +29,23 @@
 				VALUES ('$uname', '$psw')";
 
 				if ($conn->query($sql) === TRUE) {
+
+					//Create a shopping cart for the user
+					$get = mysqli_query($conn,"SELECT uID FROM users WHERE uUserName='$uname'");
+
+			        if ($row = mysqli_fetch_array($get)) {
+			          $uID = $row['uID'];
+			        }
+
+			        echo $uID;
+
+			        $add = "INSERT INTO cart (cuID)
+			          VALUES ($uID)";
+
+			         if ($conn->query($add) === TRUE) {
+			        } else {
+			        }
+
 					header("Location:  ../html/login.html");
 				} else {
 				  	echo "<h1 style='color:white>Failed to create account</h1>";

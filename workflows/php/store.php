@@ -182,6 +182,7 @@
           $p1_price = $row1['pPrice'];
           $p1_description = $row1['pDescription'];
           $p1_img = $row1['pImg'];
+          $p1_button = $p1_name . "Button";
 
           //Product ID i+1
           $p2_ID = $row2['pID'];
@@ -189,6 +190,7 @@
           $p2_price = $row2['pPrice'];
           $p2_description = $row2['pDescription'];
           $p2_img = $row2['pImg'];
+          $p2_button = $p2_name . "Button";
 
           //Product ID i+2
           $p3_ID = $row3['pID'];
@@ -196,6 +198,7 @@
           $p3_price = $row3['pPrice'];
           $p3_description = $row3['pDescription'];
           $p3_img = $row3['pImg'];
+          $p3_button = $p3_name . "Button";
 
         }
 
@@ -205,7 +208,7 @@
 
         /** Generate webpage **/
        
-      echo <<<HTML
+echo <<<HTML
         
         <div class="gridContainer">
       
@@ -217,7 +220,9 @@
               <p class="description"> $p1_description </p>
               <p class="rating"> Rating: $average1 </p>
               <p class="rating"> Reviews: $count1 </p>
-              <p><button>Add to Cart</button></p>
+              <form method="POST">
+                <p><button type="submit" name="$p1_button" value="submit">Add to Cart</button></p>
+              </form>
             </div>
           </div>
 
@@ -229,7 +234,10 @@
               <p class="description"> $p2_description </p>
               <p class="rating"> Rating: $average2 </p>
               <p class="rating"> Reviews: $count2 </p>
-              <p><button>Add to Cart</button></p>
+              <form method="POST">
+                <p><button type="submit" name="$p2_button" value="submit">Add to Cart</button></p>
+              </form>
+              
             </div>
           </div>
 
@@ -241,17 +249,23 @@
               <p class="description"> $p3_description </p>
               <p class="rating"> Rating: $average3 </p>
               <p class="rating"> Reviews: $count3 </p>
-              <p><button>Add to Cart</button></p>
+              <form method="POST">
+                <p><button type="submit" name="$p3_button" value="submit">Add to Cart</button></p>
+              </form>
             </div>
           </div>
 
         </div>
 
 
-      HTML; 
+HTML; 
         
         $i = $i +3;
       }
+
+      include('addToCart.php');
+
+       
 
       $conn->close();
 
