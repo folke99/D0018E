@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="../css/shoppingCart.css">
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/card.css">
 </head>
-
 <body>
 
     <?php
@@ -26,7 +26,7 @@
 
     <header>
 
-        <h1> Lorem Ipsum </h1>
+        <h1> Shopping Cart </h1>
 
     </header>
 
@@ -41,25 +41,41 @@
     </div>
 
     <div id="content">
-        <div class="gridContainer">
+        
             <?php
-            
-            
+                $nrOfItems =  mysqli_query($conn,"SELECT COUNT(*) FROM cartitem WHERE ciID=$uID");
 
-            echo <<<HTML
+                while($row = mysqli_fetch_array($nrOfItems)){
+                    $max = $row['COUNT(*)'];
+                }
+                $i=1;
+                $ciID = 0;
+                $cipID = 0;
+                $cart = mysqli_query($conn, "SELECT * FROM cartitem WHERE ciID=$uID");
+
+                while($row1 = mysqli_fetch_array($cart))
+                {
+                    //Product ID i
+                    $ciID = $row1['ciID'];
+                    $cipID = $row1['cipID'];
+                    // QUANT $p1_price = $row1['pPrice']; 
+echo <<<HTML
+        <div class="gridContainer">
             <div class="items">
-                
+                <div class="card">
+                  <p class="price">      ciID: $ciID</p>
+                  <p class="description">cipID: $cipID</p>
+                </div>
             </div>
-
             <div class="checkout">
-                
+                <p>aolsfiukhalsfijasöodm </p>
             </div>
-            HTML;
-            ?>
         </div>
+HTML;
+                
+                } 
+            ?>
 
     </div>
-
 </body>
-
 </html>

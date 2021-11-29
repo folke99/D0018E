@@ -1,9 +1,9 @@
 <!-- dbconnection.php -->
 <?php
-$servername = "utbweb.its.ltu.se";
-$username   = "19980724";
-$password   = "19980724";
-$dbName     = "db19980724";
+$servername = "localhost";
+$username   = "root";
+$password   = "";
+$dbName     = "d0018e";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbName);
