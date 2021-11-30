@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/card.css">
 </head>
+
 <body>
 
     <?php
@@ -41,41 +42,46 @@
     </div>
 
     <div id="content">
-        
-            <?php
-                $nrOfItems =  mysqli_query($conn,"SELECT COUNT(*) FROM cartitem WHERE ciID=$uID");
 
-                while($row = mysqli_fetch_array($nrOfItems)){
-                    $max = $row['COUNT(*)'];
-                }
-                $i=1;
-                $ciID = 0;
-                $cipID = 0;
-                $cart = mysqli_query($conn, "SELECT * FROM cartitem WHERE ciID=$uID");
+        <?php
 
-                while($row1 = mysqli_fetch_array($cart))
-                {
-                    //Product ID i
-                    $ciID = $row1['ciID'];
-                    $cipID = $row1['cipID'];
-                    // QUANT $p1_price = $row1['pPrice']; 
-echo <<<HTML
+        $nrOfItems =  mysqli_query($conn, "SELECT COUNT(*) FROM cartItem WHERE ciID=$uID");
+        while ($row = mysqli_fetch_array($nrOfItems)) {
+            $max = $row['COUNT(*)'];
+        }
+
+        $cart = mysqli_query($conn, "SELECT * FROM cartItem WHERE ciID=$uID");
+        while ($row1 = mysqli_fetch_array($cart)) {
+            //Product ID i
+            $ciID = $row1['ciID'];
+            $cipID = $row1['cipID'];
+            // QUANT $p1_price = $row1['pPrice']; 
+            $productInfo = mysqli_query($conn, "SELECT * FROM products WHERE pID=$cipID");
+            while ($row2 = mysqli_fetch_array($productInfo)) {
+                $pName = $row2['pName'];
+                $pPrice = $row2['pPrice'];
+                $totalPrice += $pPrice;
+                echo <<<HTML
         <div class="gridContainer">
             <div class="items">
                 <div class="card">
-                  <p class="price">      ciID: $ciID</p>
-                  <p class="description">cipID: $cipID</p>
+                  <p class="price">      Price: $pPrice</p>
+                  <p class="description">Name: $pName</p>
                 </div>
-            </div>
-            <div class="checkout">
-                <p>aolsfiukhalsfijasöodm </p>
             </div>
         </div>
 HTML;
-                
-                } 
-            ?>
-
+            }
+        }
+        ?>
+        <form action="../php/purchase.php" method="GET">
+            <div class="checkout">
+                <p> Purchase </p>
+                <p> Total Price: <?php echo $totalPrice; ?> </p>
+                <button> Purchase </button>
+            </div>
+        </form>
     </div>
 </body>
+
 </html>
