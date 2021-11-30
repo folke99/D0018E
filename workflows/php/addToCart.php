@@ -67,18 +67,52 @@
         }
 
         //echo $cID;
-        
 
+      
+    
 
-        //Add item to shopping cart
-        $add = "INSERT INTO cartItem (ciID, cipID, ciQuantity)
-          VALUES ($uID, $pID, 1)";
+        //Check if product is already in users cart
+        $sameFlag = false;
+        $get = mysqli_query($conn,"SELECT cipID FROM cartItem WHERE ciID='$cID'");
 
-        if ($conn->query($add) === TRUE) {
-            echo '<script>alert("Item Added!")</script>';
-        } else {
-            echo '<script>alert("Failed to add item to cart")</script>';
+        while($row = mysqli_fetch_array($get)) {
+          $cipID = $row['cipID'];
+
+          if ($cipID == $pID) {
+            $sameFlag = true;
+
+            echo $cipID . ": cartItemProduct ID";
+            echo $pID . ": product ID";
+            echo $cID . ": cart ID";
+
+            //Update to quantity
+            $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+1 WHERE ciID=$cID AND cipID=$pID";
+
+            if ($conn->query($sql) === TRUE) {
+                echo '<script>alert("Item Added!")</script>';
+            } else {
+                echo '<script>alert("Failed to add item to cart")</script>';
+            }
+          }
         }
+
+
+
+
+        //If new item
+        if (!$sameFlag) {
+
+          //Add item to shopping cart
+          $add = "INSERT INTO cartItem (ciID, cipID, ciQuantity)
+            VALUES ($cID, $pID, 1)";
+
+          if ($conn->query($add) === TRUE) {
+              echo '<script>alert("Item Added!")</script>';
+          } else {
+              echo '<script>alert("Failed to add item to cart")</script>';
+          }
+        }
+        
 
 
         $break = true;
