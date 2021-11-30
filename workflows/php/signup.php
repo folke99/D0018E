@@ -15,6 +15,7 @@
         <?php
 			$uname = $_GET["uname"];
 			$psw = $_GET["psw"];
+			$admin = $_GET["admin"];
 			
 			include('databaseConnection.php');
 
@@ -25,8 +26,8 @@
 			//Checks if username is already in use
 			if($user_exist_res->num_rows == 0){
 
-				$sql = "INSERT INTO users (uUserName, uPassword)
-				VALUES ('$uname', '$psw')";
+				$sql = "INSERT INTO users (uUserName, uPassword, uIsAdmin)
+				VALUES ('$uname', '$psw', '$admin')";
 
 				if ($conn->query($sql) === TRUE) {
 

@@ -6,6 +6,7 @@
 			            "uID INT NOT NULL AUTO_INCREMENT, ".
 			            "uUserName VARCHAR(20) NOT NULL, ".
 			            "uPassword VARCHAR(20) NOT NULL, ".
+			            "uIsAdmin BIT NOT NULL,".
 			            "PRIMARY KEY ( uID )); ";
 			         if ($conn->query($sql)) {
 			            printf("Table users created successfully.<br />");
