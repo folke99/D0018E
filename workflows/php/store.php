@@ -232,7 +232,7 @@ echo <<<HTML
               <p class="rating"> Rating: $average1 </p>
               <p class="rating"> Reviews: $count1 </p>
               <form method="POST">
-                <p><button type="submit" name="$p1_button" value="submit">Add to Cart</button></p>
+                <p><button type="submit" name="$p1_button" value="submit" >Add to Cart</button></p>
               </form>
             </div>
           </div>

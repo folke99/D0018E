@@ -80,11 +80,7 @@
 
           if ($cipID == $pID) {
             $sameFlag = true;
-
-            echo $cipID . ": cartItemProduct ID";
-            echo $pID . ": product ID";
-            echo $cID . ": cart ID";
-
+            
             //Update to quantity
             $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+1 WHERE ciID=$cID AND cipID=$pID";
 

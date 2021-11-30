@@ -21,15 +21,16 @@
 
   //Count
   $count = 0;
-  $get = mysqli_query($conn,"SELECT COUNT() FROM cartItem WHERE ciID='$uID'");
+  $get = mysqli_query($conn,"SELECT ciQuantity FROM cartItem WHERE ciID='$uID'");
 
-  if ($row = mysqli_fetch_array($get)) {
-    $pID = $row['pID'];
+  while($row = mysqli_fetch_array($get)) {
+    $count += $row['ciQuantity'];
   }
 
-
+  echo "<span> </span>";
+  echo $count;
+  
 ?>
-
 
 </body>
 </html>
