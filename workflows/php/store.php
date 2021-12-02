@@ -48,11 +48,9 @@
     include('databaseConnection.php');
     session_start();
     $uname = $_SESSION['username'];
-    $admin = mysqli_query($conn, "SELECT uIsAdmin FROM users WHERE uUserName='$uname'");
-    while($adminRow = mysqli_fetch_array($admin))
-    {
-      $adminCheck = $adminRow['uIsAdmin'];
-    }
+
+    include('adminAndBalanceCheck.php');
+
   ?>
 
   <header>
@@ -65,14 +63,15 @@
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
-      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
-      <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
-      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
       <?php 
       if ($adminCheck == 1) {
         echo "<li><a href='../php/admin.php' class='menuright'>ADMIN</a></li>";
       }
       ?> 
+      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
+      <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
+      <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
+      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
    </ul>
     <p></p> 
   </div>
