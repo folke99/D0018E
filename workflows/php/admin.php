@@ -60,7 +60,7 @@
 
   <div id="menu">
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><a href="store.php">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
       <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
       <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
@@ -91,10 +91,15 @@
           <input type="textarea" placeholder="Enter product description" name="pDescription">
         </div>
         <br>
+        <div>
+          <label for="img">Select image:</label>
+          <input type="file" id="img" name="img" accept="image/*">
+          <input type="submit">
+        </div>
+        <br>
         <div class="createProduct">
           <button class="createProduct" type="submit">Add product</button>
         </div>
-        <br>
       </form>
     </div>
 
@@ -114,8 +119,8 @@
       <h3> Remove user </h3>
       <form action="removeAccount.php">
         <div class="uID">
-            <label for="uID"><h2>Product ID</h2></label>
-            <input type="text" placeholder="Enter user ID" name="pID" required>
+            <label for="uID"><h2>User ID</h2></label>
+            <input type="text" placeholder="Enter user ID" name="uID" required>
         </div>
         <br>
         <button class="removeUserButton" type="submit">Remove user</button>
