@@ -77,7 +77,7 @@
   <div id="content">
     <div id="addNewProduct">
       <h3> Add Product </h3>
-      <form action="addProduct.php">
+      <form action="addProduct.php" method="POST" enctype="multipart/form-data">
         <div class="pName">
           <label for="pName"><h2>Product Name</h2></label>
           <input type="text" placeholder="Enter product name" name="pName" required>
@@ -91,14 +91,15 @@
           <input type="textarea" placeholder="Enter product description" name="pDescription">
         </div>
         <br>
+        
         <div>
           <label for="img">Select image:</label>
-          <input type="file" id="img" name="img" accept="image/*">
-          <input type="submit">
+          <input type="file" name="img" value=""/>
         </div>
+
         <br>
         <div class="createProduct">
-          <button class="createProduct" type="submit">Add product</button>
+          <button class="createProduct" type="submit" name="upload">Add product</button>
         </div>
       </form>
     </div>
