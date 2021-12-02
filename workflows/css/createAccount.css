@@ -15,6 +15,16 @@ label{
     border: 1px solid #66fcf1;
 }
 
+.uBalance [type=number] {
+    color: black;
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #66fcf1;
+    box-sizing: border-box;
+}
+
 .username [type=text] {
     color: black;
     width: 90%;

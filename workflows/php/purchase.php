@@ -45,11 +45,10 @@
             }
 
             $sql = "UPDATE products 
-                    SET stock -= $quantity
-                    WHERE id = $cipID ";
+                    SET pStock -= $quantity
+                    WHERE pID = $cipID ";
         }
 
-        //echo 'Storlek: '. sizeof($array);
         for ($i = 0; $i < sizeof($array); $i += 2) {
             echo ' i: ' . $array[$i] . $array[$i + 1];
             $temp1 = $array[$i];
@@ -58,7 +57,7 @@
         }
 
         $sql = "UPDATE users
-            SET balance -= $totalPrice
+            SET uBalance -= $totalPrice
             WHERE uID = $uID ";
 
         if ($conn->query($delete) == TRUE) {

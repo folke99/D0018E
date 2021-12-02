@@ -7,6 +7,7 @@
 			            "uUserName VARCHAR(20) NOT NULL, ".
 			            "uPassword VARCHAR(20) NOT NULL, ".
 			            "uIsAdmin BIT NOT NULL,".
+						"uBalance INT NOT NULL,".
 			            "PRIMARY KEY ( uID )); ";
 			         if ($conn->query($sql)) {
 			            printf("Table users created successfully.<br />");
@@ -47,6 +48,7 @@
 			            "pName VARCHAR(20) NOT NULL, ".
 			            "pOverallRating INT NOT NULL, ".
 			            "pPrice INT NOT NULL, ".
+						//"pStock INT NOT NULL, ".
 			            "pDescription VARCHAR(200) NOT NULL,".
 			            "pImg VARCHAR(100) NOT NULL,".
 			            "PRIMARY KEY ( pID )); ";

@@ -13,9 +13,10 @@
     <body>
         <center>
         <?php
-			$uname = $_GET["uname"];
-			$psw = $_GET["psw"];
-			$admin = $_GET["admin"];
+			$uname 	  = $_GET["uname"];
+			$psw 	  = $_GET["psw"];
+			$admin 	  = $_GET["admin"];
+			$uBalance = $_GET["uBalance"];
 			
 			include('databaseConnection.php');
 
@@ -26,8 +27,8 @@
 			//Checks if username is already in use
 			if($user_exist_res->num_rows == 0){
 
-				$sql = "INSERT INTO users (uUserName, uPassword, uIsAdmin)
-				VALUES ('$uname', '$psw', $admin)";
+				$sql = "INSERT INTO users (uUserName, uPassword, uIsAdmin, uBalance)
+				VALUES ('$uname', '$psw', $admin, $uBalance)";
 
 				if ($conn->query($sql) === TRUE) {
 
