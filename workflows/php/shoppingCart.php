@@ -44,6 +44,7 @@
     <div id="content">
 
         <?php
+        error_reporting(error_reporting() & ~E_NOTICE);
 
         $nrOfItems =  mysqli_query($conn, "SELECT COUNT(*) FROM cartItem WHERE ciID=$uID");
         while ($row = mysqli_fetch_array($nrOfItems)) {

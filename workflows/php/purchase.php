@@ -13,10 +13,10 @@
 
 <body>
 
-
     <?php
     include('databaseConnection.php');
     $uname = $_SESSION['username'];
+    error_reporting(error_reporting() & ~E_NOTICE);
 
     $array = array();
 
@@ -42,32 +42,34 @@
                 $pName = $row2['pName'];
                 $pPrice = $row2['pPrice'] * $quantity;
                 $totalPrice += $pPrice;
+            }
 
-                $sql = "UPDATE products 
+            $sql = "UPDATE products 
                     SET stock -= $quantity
                     WHERE id = $cipID ";
-            }
         }
-        
-        echo 'Storlek: '. sizeof($array);
-        for($i = 0; $i <= sizeof($array); $i += 2){
-            echo 'i: '. $array[$i];
-            $delete = "DELETE FROM cartItem WHERE ciID = $array[$i] and cipID = $array[$i]";
+
+        //echo 'Storlek: '. sizeof($array);
+        for ($i = 0; $i < sizeof($array); $i += 2) {
+            echo ' i: ' . $array[$i] . $array[$i + 1];
+            $temp1 = $array[$i];
+            $temp2 = $array[$i + 1];
+            $delete = mysqli_query($conn, "DELETE FROM cartItem WHERE ciID = '$temp1' and cipID = '$temp2'");
         }
 
         $sql = "UPDATE users
             SET balance -= $totalPrice
             WHERE uID = $uID ";
 
-        if ($conn->query($delete) === TRUE) {
-            echo '<script>alert("Items Purchased!")</script>';
+        if ($conn->query($delete) == TRUE) {
+            echo '<script>alert("True")</script>';
         } else {
-            echo '<script>alert("Failed to purchase item")</script>';
+            echo '<script>alert("Not true")</script>';
+            header("Location:  shoppingCart.php");
         }
     }
 
     ?>
-
 
 </body>
 
