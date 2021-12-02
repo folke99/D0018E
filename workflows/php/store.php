@@ -70,7 +70,7 @@
       <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
       <?php 
       if ($adminCheck == 1) {
-        echo "<li><a href='../html/admin.html' class='menuright'>ADMIN</a></li>";
+        echo "<li><a href='../php/admin.php' class='menuright'>ADMIN</a></li>";
       }
       ?> 
    </ul>
@@ -91,21 +91,30 @@
         $max = $row['COUNT(*)'];
       }
 
-      $i = 1;   //loop variable
+      $i = 1;         //loop variable
+      $counter = 1;   //reset after 3 to create a new gridContainer
 
 
-      $counter = 1;
+      //Add all pID to a array
+
+      $productList = array();
+
+      $p = mysqli_query($conn, "SELECT pID FROM products");
+      while($row = mysqli_fetch_array($p)) {
+        $productList[] = $row[0];
+      }
+
+
 
 
       //Get products and rating from db
 
-
       while ($i <= $max) {
+
+        $currentProductID = $productList[$i-1];
 
         include('getProducts.php');
         include('checkRating.php');
-        
-
         
         //Check grid position
 
@@ -121,7 +130,7 @@
           $location = "right";
           $counter = 1;
         }
-        
+
 
         /** Generate webpage **/
 

@@ -9,19 +9,19 @@
 
 	<?php
 
-        $p = mysqli_query($conn, "SELECT * FROM products WHERE pID=$i");
+    	$p = mysqli_query($conn, "SELECT * FROM products WHERE pID=$currentProductID");
 
 
-           while($row = mysqli_fetch_array($p)){
+       	while($row = mysqli_fetch_array($p)){
 
-           	  	//Product ID i
-	          $p_ID = $row['pID'];
-	          $p_name = $row['pName'];
-	          $p_price = $row['pPrice'];
-	          $p_description = $row['pDescription'];
-	          $p_img = $row['pImg'];
-	          $p_button = $p_name . "Button";
-           }
+       	  	//Product ID i
+          $p_ID = $row['pID'];
+          $p_name = $row['pName'];
+          $p_price = $row['pPrice'];
+          $p_description = $row['pDescription'];
+          $p_img = $row['pImg'];
+          $p_button = $p_name . "Button";
+       	}
 
 	?>
 
