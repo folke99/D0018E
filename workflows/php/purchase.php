@@ -16,7 +16,7 @@
     <?php
     include('databaseConnection.php');
     $uname = $_SESSION['username'];
-    error_reporting(error_reporting() & ~E_NOTICE);
+    //error_reporting(error_reporting() & ~E_NOTICE);
 
     $array = array();
 
@@ -50,15 +50,21 @@
         }
 
         for ($i = 0; $i < sizeof($array); $i += 2) {
-            echo ' i: ' . $array[$i] . $array[$i + 1];
             $temp1 = $array[$i];
             $temp2 = $array[$i + 1];
             $delete = mysqli_query($conn, "DELETE FROM cartItem WHERE ciID = '$temp1' and cipID = '$temp2'");
         }
 
-        $sql = "UPDATE users
-            SET uBalance -= $totalPrice
-            WHERE uID = $uID ";
+        $newBalance = $uBalance - $totalPrice/2;
+
+        $update = mysqli_query($conn, "UPDATE users
+            SET uBalance = '$newBalance'
+            WHERE uID = '$uID' ");
+
+        if (!$update) {
+            printf("Error: %s\n", mysqli_error($conn));
+            exit();
+        }
 
         if ($conn->query($delete) == TRUE) {
             echo '<script>alert("True")</script>';

@@ -19,10 +19,13 @@
     $uname = $_SESSION['username'];
 
     //Get user ID
-    $uID_res = mysqli_query($conn, "SELECT uID FROM users WHERE uUserName = '$uname'");
+    $uID_res = mysqli_query($conn, "SELECT * FROM users WHERE uUserName = '$uname'");
     while ($row0 = mysqli_fetch_array($uID_res)) {
         $uID = $row0['uID'];
+        $uBalance = $row0['uBalance'];
     }
+    echo $uBalance;
+    echo $uID;
     ?>
 
     <header>
