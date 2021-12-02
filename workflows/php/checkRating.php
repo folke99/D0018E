@@ -10,8 +10,8 @@
 	<?php
 		
 		//rating
-        $rating = mysqli_query($conn, "SELECT rRating FROM reviews WHERE rpID=$i");
-        $amountOfReviews = mysqli_query($conn, "SELECT COUNT(*) FROM reviews WHERE rpID=$i");
+        $rating = mysqli_query($conn, "SELECT rRating FROM reviews WHERE rpID=$currentProductID");
+        $amountOfReviews = mysqli_query($conn, "SELECT COUNT(*) FROM reviews WHERE rpID=$currentProductID");
 
 
         /** Check Rating **/
