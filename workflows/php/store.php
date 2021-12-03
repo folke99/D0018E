@@ -149,6 +149,8 @@ echo <<<HTML
               <p class="rating"> Rating: $averageRating </p>
               <p class="rating"> Reviews: $countReviews </p>
               <form method="POST">
+                <label for="amount"><h3>Select Amount</h3></label>
+                <input type="number" name="amount" min="1" value="1" style="width: 15%; required">
                 <p><button type="submit" name="$p_button" value="submit" >Add to Cart</button></p>
               </form>
             </div>

@@ -35,6 +35,8 @@
 
       if(isset($_POST[$row['pName']."Button"])){
 
+        $amount = $_POST["amount"];
+
         $pName = $row['pName'];
 
         //echo $pName;
@@ -82,7 +84,7 @@
             $sameFlag = true;
             
             //Update to quantity
-            $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+1 WHERE ciID=$cID AND cipID=$pID";
+            $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+$amount WHERE ciID=$cID AND cipID=$pID";
 
             if ($conn->query($sql) === TRUE) {
                 echo '<script>alert("Item Added!")</script>';
@@ -100,7 +102,7 @@
 
           //Add item to shopping cart
           $add = "INSERT INTO cartItem (ciID, cipID, ciQuantity)
-            VALUES ($cID, $pID, 1)";
+            VALUES ($cID, $pID, $amount)";
 
           if ($conn->query($add) === TRUE) {
               echo '<script>alert("Item Added!")</script>';
