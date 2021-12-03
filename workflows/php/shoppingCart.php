@@ -26,6 +26,8 @@
     }
     echo $uBalance;
     echo $uID;
+
+    include('adminAndBalanceCheck.php');
     ?>
 
     <header>
@@ -36,13 +38,20 @@
 
     <div id="menu">
         <ul>
-            <li><a href="store.php">Home</a></li>
-            <li><a href="../html/login.html" class="menuright">Logout</a></li>
-            <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
-            <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
-        </ul>
-        <p></p>
-    </div>
+          <li><a href="store.php">Home</a></li>
+          <li><a href="../html/login.html" class="menuright">Logout</a></li>
+          <?php 
+          if ($adminCheck == 1) {
+            echo "<li><a href='../php/admin.php' class='menuright'>ADMIN</a></li>";
+          }
+          ?> 
+          <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
+          <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
+          <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
+          <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
+       </ul>
+        <p></p> 
+  </div>
 
     <div id="content">
 
@@ -66,28 +75,52 @@
                 $pName = $row2['pName'];
                 $pPrice = $row2['pPrice'] * $quantity;
                 $totalPrice += $pPrice;
+                $pImg = $row2['pImg'];
+                $pDescription = $row2['pDescription'];
 echo <<<HTML
-        <div class="gridContainer">
+        <div class="gridContainer">  
             <div class="items">
                 <div class="card">
-                  <p class="price">      Price: $pPrice</p>
-                  <p class="description">Name: $pName Quantity: $quantity</p>
+                <img src="$pImg" alt="$pName" style="width: 150px; border-radius: 20px;">
+                  <h1 style="color: black; font-weight: bolder;"> $pName </h1>
+                  <p class="price" style="color: black; font-weight: bold;">      Price: $$pPrice</p>
+                  <p class="description" style="color: black;">Quantity: $quantity</p>
                 </div>
             </div>
         </div>
 HTML;
             }
         }
+
+        //Check if cart is empty
+
+        $nrOfItems =  mysqli_query($conn, "SELECT COUNT(*) FROM cartItem WHERE ciID=$uID");
+        while ($row = mysqli_fetch_array($nrOfItems)) {
+            $max = $row['COUNT(*)'];
+        }
+
+        if ($max > 0) {
 echo <<<HTML
         <form method="POST">
             <div class="checkout">
-                <p> Purchase </p>
-                <p> Total Price: $totalPrice </p>
+                <h1> Purchase </h1>
+                <p> Total Price: $$totalPrice </p>
                 <button type="submit" name="submit" value="submit"> Purchase </button>
             </div>
         </form>
 HTML;
-        include('purchase.php');
+            include('purchase.php');
+        }
+        else
+        {
+echo <<<HTML
+        <div class="checkout">
+            <h1> Your cart is empty </h1>
+        </div>
+HTML;
+        }
+
+
         ?>
     </div>
 </body>
