@@ -27,11 +27,12 @@
 			//Checks if username is already in use
 			if($user_exist_res->num_rows == 0){
 
-				$sql = "INSERT INTO users (uUserName, uPassword, uIsAdmin, uBalance)
-				VALUES ('$uname', '$psw', $admin, $uBalance)";
+				$sql = $conn->prepare("INSERT INTO users (uUserName, uPassword, uIsAdmin, uBalance)
+				VALUES (?, ?, ?, ?)");
+				$sql->bind_param('ssii', $uname, $psw ,$admin ,$uBalance);
+				$sql->execute();
 
-				if ($conn->query($sql) === TRUE) {
-
+				if ($sql == TRUE) {
 					//Create a shopping cart for the user
 					$get = mysqli_query($conn,"SELECT uID FROM users WHERE uUserName='$uname'");
 
@@ -55,7 +56,7 @@
 			else{
 				echo "<h1 style='color:white'>Username already in use</h1>";
 			}
-
+			
 
 			$conn->close();
 		?>
