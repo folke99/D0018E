@@ -20,11 +20,16 @@
 			include('databaseConnection.php');
 
 			//Looks for usename in table
-			$user_exist = "SELECT uUserName FROM users WHERE uUserName='$uname'";
-			$user_exist_res = $conn->query($user_exist);
+			$user_exist = $conn->prepare("SELECT uUserName FROM users WHERE uUserName=?");
+			$user_exist->bind_param('s', $uname);			
+			$user_exist->execute();
+			$result = $user_exist->get_result();
+			$user_exist_res = $result->fetch_array(MYSQLI_NUM);
+			//$user_exist_res = mysqli_fetch_array($user_exist);
+
 
 			//Checks if user exists
-			if($user_exist_res->num_rows > 0){
+			if($user_exist_res->num_rows >= 0){
 
 				//GET PASSWORD FROM DATABASE TABLE
 

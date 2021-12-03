@@ -24,15 +24,9 @@
 			$user_exist = $conn->prepare("SELECT uUserName FROM users WHERE uUserName=?");
 			$user_exist->bind_param('s', $uname);
 			$user_exist->execute();
+			$result = $user_exist->get_result();
+			$user_exist_res = $result->fetch_array(MYSQLI_NUM);
 
-			if ($row = mysqli_fetch_array($user_exist)){
-			          $user_exist_res = $row['uUserName'];
-			}
-
-			if (!$user_exist) {
-			    printf("Error: %s\n", mysqli_error($conn));
-			    exit();
-			}
 			//$user_exist_res = mysqli_fetch_array($user_exist);
 
 			//Checks if username is already in use
