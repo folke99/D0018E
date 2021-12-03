@@ -31,10 +31,21 @@
       margin-left: 10pt;
       float: left;
     }
-    h3{
+    h3, h4{
       text-align: center;
       margin-top: 15pt;
     }
+
+    #removeProductDiv ul{
+      background-color: grey;
+    }
+
+    #removeProductDiv ul li{
+      display: block;
+      clear: both;
+
+    }
+
   </style>
 
 </head>
@@ -50,11 +61,12 @@
     {
       $adminCheck = $adminRow['uIsAdmin'];
     }
+    include('adminAndBalanceCheck.php');
   ?>
 
   <header>
     
-    <h1> Store </h1>
+    <h1> Admin </h1>
 
   </header>
 
@@ -62,14 +74,15 @@
     <ul>
       <li><a href="store.php">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
-      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
-      <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
-      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
       <?php 
       if ($adminCheck == 1) {
-        echo "<li><a href='../html/admin.php' class='menuright'>ADMIN</a></li>";
+        echo "<li><a href='../php/admin.php' class='menuright'>ADMIN</a></li>";
       }
       ?> 
+      <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
+      <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
+      <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
+      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
    </ul>
     <p></p> 
   </div>
@@ -85,6 +98,10 @@
         <div class="pPrice">
           <label for="pPrice"><h2>Price</h2></label>
           <input type="text" placeholder="Enter product price" name="pPrice" required>
+        </div>
+        <div class="pStock">
+          <label for="pStock"><h2>Stock</h2></label>
+          <input type="number" placeholder="Enter product stock" name="pStock" required>
         </div>
         <div class="pDescription">
           <label for="pDescription"><h2>Description</h2></label>
@@ -114,6 +131,9 @@
         <br>
         <button class="removeProductButton" type="submit">Remove product</button>
       </form>
+      <h4> List of avalible products </h4>
+      <?php include('listProducts.php'); ?>
+      <span></span>
     </div>
 
     <div id="removeProductDiv">
