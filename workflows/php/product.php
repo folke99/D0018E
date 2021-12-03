@@ -58,6 +58,7 @@
       $pDescription = $row['pDescription'];
       $pImg = $row['pImg'];
     }
+    include('adminAndBalanceCheck.php');
   ?>
 
   <header>
@@ -70,10 +71,17 @@
     <ul>
       <li><a href="store.php">Home</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
+      <?php 
+      if ($adminCheck == 1) {
+        echo "<li><a href='../php/admin.php' class='menuright'>ADMIN</a></li>";
+      }
+      ?> 
       <li><a href="shoppingCart.php" class="img"><img src="../images/cart.png"></a></li>
-      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li> 
+      <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
+      <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
+      <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
    </ul>
-   	<br>
+    <p></p> 
   </div>
 
   <div id="content">
@@ -92,7 +100,11 @@
         </div>
 
         <div>
-        <button> Add to cart </button>
+          <form action="../php/addToCartFromProduct.php?pID=<?php echo $pID ?>" method="POST">
+              <label for="amount"><h3 style="color: white;">Select Amount</h3></label>
+              <input type="number" name="amount" min="1" value="1" style="width: 15%; required">
+              <button> Add to cart </button>
+          </form>
         </div>
       </div>
 
