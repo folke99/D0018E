@@ -46,9 +46,9 @@
 			$sql = "CREATE TABLE products( ".
 			            "pID INT NOT NULL AUTO_INCREMENT, ".
 			            "pName VARCHAR(20) NOT NULL, ".
-			            "pOverallRating INT NOT NULL, ".
 			            "pPrice INT NOT NULL, ".
-						//"pStock INT NOT NULL, ".
+						"pStock INT NOT NULL, ".
+						"pOverallRating INT NOT NULL, ".
 			            "pDescription VARCHAR(200) NOT NULL,".
 			            "pImg VARCHAR(100) NOT NULL,".
 			            "PRIMARY KEY ( pID )); ";
@@ -61,17 +61,23 @@
 
 /****************************************************************************************************************************/
 
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
-					VALUES ('Apple', 1, 0, 'Rund röd grej går att äta', '../images/products/apple.png')";
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
+					VALUES ('Apple', 
+						1, 
+						1000, 
+						0, 
+						'Rund röd grej går att äta', 
+						'../images/products/apple.png')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<h1 style='color:white'>Account created successfully!</h1>";
 					} else {
 					  	echo "<h1 style='color:white>Failed to create account1</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
 					VALUES ('Banana',
 							2,
+							1000,
 							0,
 							'Gul böjd grej, skala först!',
 							'../images/products/banana.png')";
@@ -81,9 +87,10 @@
 					} else {
 					  	echo "<h1 style='color:white>Failed to create account2</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
 					VALUES ('Kiwi',
 							3,
+							1000,
 							0,
 							'Hårig liten boll liknande frukt',
 							'../images/products/kiwi.png')";
@@ -93,9 +100,10 @@
 					} else {
 					  	echo "<h1 style='color:white>Failed to create account3</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
 					VALUES ('Mango',
 							4,
+							1000,
 							0,
 							'Gul på insidan, stor som en stor tennisboll',
 							'../images/products/mango.png')";
@@ -105,9 +113,10 @@
 					} else {
 					  	echo "<h1 style='color:white>Failed to create account4</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
 					VALUES ('Orange',
 							5,
+							1000,
 							0,
 							'Gul på utsidan, stor som en normalstor tennisboll',
 							'../images/products/orange.png')";
@@ -117,9 +126,10 @@
 					} else {
 					  	echo "<h1 style='color:white>Failed to create account5</h1>";
 					}
-			$sql = "INSERT INTO products (pName, pPrice, pOverallRating, pDescription, pImg)
+			$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
 					VALUES ('Pear',
 							6,
+							1000,
 							0,
 							'Grön frukn som är päron formad',
 							'../images/products/pear.png')";
