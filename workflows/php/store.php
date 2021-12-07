@@ -4,6 +4,7 @@
 <head>
   <meta name="Store" content="e-commerce" />
   <meta charset="utf-8">
+  <link rel="icon" href="../images/fruitIcon.png">
   <title>Store</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/menu.css">
