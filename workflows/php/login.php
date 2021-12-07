@@ -19,20 +19,22 @@
 
 		$uname = $_POST["uname"];
 		$psw = $_POST["psw"];
-		include('databaseConnection.php');
+		$uID = "";
+			$user_exist_res[] = "";
+			
+			include('databaseConnection.php');
+			$user_exist = $conn->prepare("SELECT uUserName FROM users WHERE uUserName=?");
+			$user_exist->bind_param('s', $uname);
+			$user_exist->execute();
+			$user_exist->bind_result($unames);
+			//echo $user_exist->fetch();
+	        while ($user_exist->fetch()) {
+	        	
+	        	array_push($user_exist_res, $unames);
 
-		//Looks for usename in table
-		$user_exist = $conn->prepare("SELECT uUserName FROM users WHERE uUserName=?");
-		$user_exist->bind_param('s', $uname);
-		$user_exist->execute();
-		$result = $user_exist->get_result();
-		$user_exist_res = $result->fetch_array(MYSQLI_NUM);
-		//$user_exist_res = mysqli_fetch_array($user_exist);
+	        }
 
-
-		//Checks if user exists
-		if ($user_exist_res->num_rows >= 0) {
-
+			if(count($user_exist_res)>1){
 			//GET PASSWORD FROM DATABASE TABLE
 
 			$result = mysqli_query($conn, "SELECT uPassword FROM users WHERE uUserName='$uname'");
