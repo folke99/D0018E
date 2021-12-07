@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/card.css">
+    <link rel="icon" href="../images/fruitIcon.png">
 
     <style type="text/css">
 
@@ -95,12 +96,15 @@
             $quantity = $row1['ciQuantity']; 
 
             $productInfo = mysqli_query($conn, "SELECT * FROM products WHERE pID=$cipID");
+
             while ($row2 = mysqli_fetch_array($productInfo)) {
                 $pName = $row2['pName'];
                 $pPrice = $row2['pPrice'] * $quantity;
                 $totalPrice += $pPrice;
                 $pImg = $row2['pImg'];
                 $pDescription = $row2['pDescription'];
+                $pButton = $pName . "Button";
+
 echo <<<HTML
         <div class="gridContainer">  
             <div class="items">
@@ -109,12 +113,21 @@ echo <<<HTML
                   <h1 style="color: black; font-weight: bolder;"> $pName </h1>
                   <p class="price" style="color: black; font-weight: bold;">      Price: $$pPrice</p>
                   <p class="description" style="color: black;">Quantity: $quantity</p>
+                  <form method="POST">
+                    <label for="amount"><h3>Remove Amount: </h3></label>
+                    <input type="number" name="amount" min="0" value="0" style="width: 15%; required">
+                    <p><button type="submit" name="$pButton" value="submit">Remove</button></p>
+                  </form>
                 </div>
             </div>
+
         </div>
 HTML;
             }
         }
+
+        include('removeFromCart.php');
+
 
         //Check if cart is empty
 

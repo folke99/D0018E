@@ -69,9 +69,9 @@
         }
 
         if ($conn->query($delete) == TRUE) {
-            echo '<script>alert("True")</script>';
+            echo '<script>alert("Error")</script>';
         } else {
-            echo '<script>alert("Not true")</script>';
+            echo '<script>alert("Success")</script>';
             header("Location:  shoppingCart.php");
         }
     }
