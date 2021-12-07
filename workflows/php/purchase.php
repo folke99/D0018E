@@ -38,15 +38,17 @@
             array_push($array, $cipID);
 
             $productInfo = mysqli_query($conn, "SELECT * FROM products WHERE pID=$cipID");
-            while ($row2 = mysqli_fetch_array($productInfo)) {
+            if ($row2 = mysqli_fetch_array($productInfo)) {
                 $pName = $row2['pName'];
                 $pPrice = $row2['pPrice'] * $quantity;
+                $pStock = $row2['pStock'];
                 $totalPrice += $pPrice;
             }
 
-            $sql = "UPDATE products 
-                    SET pStock -= $quantity
-                    WHERE pID = $cipID ";
+            $newQuantity = $pStock - $quantity;
+            $updateStock = mysqli_query($conn, "UPDATE products 
+                SET pStock = '$newQuantity'
+                WHERE pID = '$cipID' ");
         }
 
         for ($i = 0; $i < sizeof($array); $i += 2) {
@@ -57,11 +59,11 @@
 
         $newBalance = $uBalance - $totalPrice/2;
 
-        $update = mysqli_query($conn, "UPDATE users
+        $updateBalance = mysqli_query($conn, "UPDATE users
             SET uBalance = '$newBalance'
             WHERE uID = '$uID' ");
 
-        if (!$update) {
+        if (!$updateBalance) {
             printf("Error: %s\n", mysqli_error($conn));
             exit();
         }
