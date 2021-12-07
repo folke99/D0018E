@@ -39,7 +39,7 @@
 
         $pName = $row['pName'];
 
-        //echo $pName;
+
 
         //Get pID
         $get = mysqli_query($conn,"SELECT pID FROM products WHERE pName='$pName'");
@@ -48,7 +48,7 @@
           $pID = $row['pID'];
         }
 
-        //echo $pID;
+
 
 
         //Get uID
@@ -59,7 +59,7 @@
           $uID = $row['uID'];
         }
 
-        //echo $uID;
+
 
         //Get cID (The cart connected to the user)
         $get = mysqli_query($conn,"SELECT cID FROM cart WHERE cuID='$uID'");
@@ -68,9 +68,19 @@
           $cID = $row['cID'];
         }
 
-        //echo $cID;
 
-      
+        
+        //Get stock of the product
+        $get = mysqli_query($conn,"SELECT pStock FROM products WHERE pID='$pID'");
+
+        if ($row = mysqli_fetch_array($get)) {
+          $pStock = $row['pStock'];
+        }
+
+
+
+
+
     
 
         //Check if product is already in users cart
@@ -83,14 +93,31 @@
           if ($cipID == $pID) {
             $sameFlag = true;
             
-            //Update to quantity
-            $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+$amount WHERE ciID=$cID AND cipID=$pID";
 
-            if ($conn->query($sql) === TRUE) {
-                echo '<script>alert("Item Added!")</script>';
-            } else {
-                echo '<script>alert("Failed to add item to cart")</script>';
+            //Get the quantity the user has of the product from before
+            $get = mysqli_query($conn,"SELECT ciQuantity FROM cartItem WHERE ciID=$cID AND cipID=$pID");
+
+            if ($row = mysqli_fetch_array($get)) {
+              $ciQuantity = $row['ciQuantity'];
             }
+
+
+            if (($amount + $ciQuantity) <= $pStock) {
+
+              //Update to quantity
+              $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+$amount WHERE ciID=$cID AND cipID=$pID";
+
+              if ($conn->query($sql) === TRUE) {
+                  echo '<script>alert("Item Added!")</script>';
+              } else {
+                  echo '<script>alert("Failed to add item to cart")</script>';
+              }
+
+            }
+            else
+              echo '<script>alert("Not enough in stock")</script>';
+
+            
           }
         }
 
@@ -100,15 +127,23 @@
         //If new item
         if (!$sameFlag) {
 
-          //Add item to shopping cart
-          $add = "INSERT INTO cartItem (ciID, cipID, ciQuantity)
-            VALUES ($cID, $pID, $amount)";
+          if ($amount <= $pStock) {
+            
+            //Add item to shopping cart
+            $add = "INSERT INTO cartItem (ciID, cipID, ciQuantity)
+              VALUES ($cID, $pID, $amount)";
 
-          if ($conn->query($add) === TRUE) {
-              echo '<script>alert("Item Added!")</script>';
-          } else {
-              echo '<script>alert("Failed to add item to cart")</script>';
+            if ($conn->query($add) === TRUE) {
+                echo '<script>alert("Item Added!")</script>';
+            } else {
+                echo '<script>alert("Failed to add item to cart")</script>';
+            }
+
           }
+          else
+              echo '<script>alert("Not enough in stock")</script>';
+
+          
         }
         
 
