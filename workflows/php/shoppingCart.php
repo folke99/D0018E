@@ -32,6 +32,62 @@
         button:hover {
           box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
         }
+
+
+
+/* The grid container */
+.gridContainer {
+  display: grid;
+  grid-template-areas: 
+    'left left middle middle right right';
+  grid-column-gap: 20px;
+  margin-bottom: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+  padding-top: 15px;
+} 
+
+.left,
+.middle,
+.right {
+  padding: 10px;
+  background-color: rgba(69, 162, 158, 0);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Style the left column */
+.left {
+  grid-area: left; 
+}
+
+/* Style the middle column */
+.middle {
+  grid-area: middle;
+}
+
+/* Style the right column */
+.right {
+  grid-area: right;
+}
+
+.left img{
+    width: 200px;
+    border-radius: 10px;
+}
+
+.right button{
+    background-color: black;
+}
+
+.items2{
+    display: block;
+    width: 100%;
+    background-color: rgba(69, 162, 158, 0.7);
+}
+
+
     </style>
     
 </head>
@@ -80,6 +136,7 @@
 
     <div id="content">
 
+
         <?php
         error_reporting(error_reporting() & ~E_NOTICE);
 
@@ -106,21 +163,26 @@
                 $pButton = $pName . "Button";
 
 echo <<<HTML
-        <div class="gridContainer">  
-            <div class="items">
-                <div class="card">
-                <img src="$pImg" alt="$pName" style="width: 150px; border-radius: 20px;">
-                  <h1 style="color: black; font-weight: bolder;"> $pName </h1>
-                  <p class="price" style="color: black; font-weight: bold;">      Price: $$pPrice</p>
-                  <p class="description" style="color: black;">Quantity: $quantity</p>
-                  <form method="POST">
-                    <label for="amount"><h3>Remove Amount: </h3></label>
-                    <input type="number" name="amount" min="0" value="0" style="width: 15%; required">
-                    <p><button type="submit" name="$pButton" value="submit">Remove</button></p>
-                  </form>
-                </div>
-            </div>
 
+        <div class="items2">
+                <div class="gridContainer">
+                      <div class="left">
+                          <img src="$pImg" alt="$pName">
+                      </div>
+
+                      <div class="middle">
+                          <h1 style="color: black; font-weight: bolder;"> $pName </h1>
+                          <p class="price" style="color: black; font-weight: bold;">      Price: $$pPrice</p>
+                          <p class="description" style="color: black;">Quantity: $quantity</p>
+                      </div>
+                      <div class="right">
+                          <form method="POST">
+                            <label for="amount"><h3>Remove Amount: </h3></label>
+                            <input type="number" name="amount" min="0" value="0" style="width: 15%; required">
+                            <p><button type="submit" name="$pButton" value="submit">Remove</button></p>
+                          </form>
+                      </div>
+                </div>
         </div>
 HTML;
             }

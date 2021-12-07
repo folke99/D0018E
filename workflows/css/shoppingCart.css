@@ -17,15 +17,3 @@ p {
     border-radius: 15px;
     text-align: center;
 }
-
-.gridContainer {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-areas: 
-      'items checkout';
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-} 
-
