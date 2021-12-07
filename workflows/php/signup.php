@@ -17,24 +17,30 @@
 			$psw 	  = $_GET["psw"];
 			$admin 	  = $_GET["admin"];
 			$uBalance = $_GET["uBalance"];
+			$uID = "";
+			$user_exist_res[] = "";
 			
 			include('databaseConnection.php');
-
-			//Looks for usename in table
 			$user_exist = $conn->prepare("SELECT uUserName FROM users WHERE uUserName=?");
 			$user_exist->bind_param('s', $uname);
 			$user_exist->execute();
-			$result = $user_exist->get_result();
-			$user_exist_res = $result->fetch_array(MYSQLI_NUM);
+			$user_exist->bind_result($unames);
+			//echo $user_exist->fetch();
+	        while ($user_exist->fetch()) {
+	        	
+	        	array_push($user_exist_res, $unames);
 
-			//$user_exist_res = mysqli_fetch_array($user_exist);
+	        }
 
-			//Checks if username is already in use
-			if($user_exist_res->num_rows == 0){
+			if(count($user_exist_res)>1){
 
+				echo "<h1 style='color:white'>Username already in use</h1>";
+
+			}
+			else{
 				$sql = $conn->prepare("INSERT INTO users (uUserName, uPassword, uIsAdmin, uBalance)
 				VALUES (?, ?, ?, ?)");
-				$sql->bind_param('ssii', $uname, $psw ,$admin ,$uBalance);
+				$sql->bind_param('ssbi', $uname, $psw ,$admin ,$uBalance);
 				$sql->execute();
 
 				if ($sql == TRUE) {
@@ -42,9 +48,10 @@
 					$get = $conn->prepare("SELECT uID FROM users WHERE uUserName=?");
 					$get->bind_param('s', $uname);
 					$get->execute();
+					$get->bind_result($uIDs);
 
-			        if ($row = mysqli_fetch_array($get)) {
-			          $uID = $row['uID'];
+			        if ($get->fetch()) {
+			          $uID = $uIDs;
 			        }
 
 			        $add = "INSERT INTO cart (cuID)
@@ -57,11 +64,7 @@
 					header("Location:  ../html/login.html");
 				} else {
 				  	echo "<h1 style='color:white>Failed to create account</h1>";
-				}
-
-			}
-			else{
-				echo "<h1 style='color:white'>Username already in use</h1>";
+				}			
 			}
 			
 
