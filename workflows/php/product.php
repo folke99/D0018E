@@ -4,7 +4,8 @@
 <head>
   <meta name="Store" content="e-commerce" />
   <meta charset="utf-8">
-  <title>Store</title>
+  <link rel="icon" href="../images/fruitIcon.png">
+  <title>Product</title>
   <link rel="stylesheet" href="../css/product.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/menu.css">
@@ -102,7 +103,7 @@
         <div>
           <form action="../php/addToCartFromProduct.php?pID=<?php echo $pID ?>" method="POST">
               <label for="amount"><h3 style="color: white;">Select Amount</h3></label>
-              <input type="number" name="amount" min="1" value="1" style="width: 15%; required">
+              <input type="number" name="amount" min="1" value="1" style="width: 15%" required>
               <button> Add to cart </button>
           </form>
         </div>
