@@ -40,7 +40,7 @@
 			else{
 				$sql = $conn->prepare("INSERT INTO users (uUserName, uPassword, uIsAdmin, uBalance)
 				VALUES (?, ?, ?, ?)");
-				$sql->bind_param('ssbi', $uname, $psw ,$admin ,$uBalance);
+				$sql->bind_param('ssii', $uname, $psw ,$admin ,$uBalance);
 				$sql->execute();
 
 				if ($sql == TRUE) {

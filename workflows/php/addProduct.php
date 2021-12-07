@@ -9,9 +9,13 @@ if (isset($_POST['upload'])) {
 	$pPrice = $_POST["pPrice"];
 	$pDescription = $_POST["pDescription"];
 	$pStock = $_POST["pStock"];
+	$pOverallRating = 0;
 
-	$sql = "INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
-						VALUES ('$pName', $pPrice, $pStock, 0, '$pDescription', '$folder')";
+
+	$sql = $conn->prepare("INSERT INTO products (pName, pPrice, pStock, pOverallRating, pDescription, pImg)
+		     			VALUES (?, ?, ?, ?, ?, ?)");
+						$sql->bind_param('siiiss', $pName, $pPrice ,$pStock, $pOverallRating ,$pDescription, $folder);
+						$sql->execute();
 
 						if ($conn->query($sql) === TRUE) {
 							echo "<h1 style='color:white'>Account created successfully!</h1>";

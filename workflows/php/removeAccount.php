@@ -3,8 +3,9 @@ include('databaseConnection.php');
 session_start();
 $uID = $_GET["uID"];
 echo $uID;
-$delete = mysqli_query($conn, "DELETE FROM users WHERE uID ='$uID'");
-echo $delete;
+$delete = $conn->prepare("DELETE FROM users WHERE uID =?");
+$delete->bind_param('s', $uID);
+$delete->execute();
 
 header("Location:  ../php/admin.php");
 
