@@ -6,29 +6,27 @@
 	$pID = $_GET['pID'];
 	$uname = $_SESSION['username'];
 	include('databaseConnection.php');
-	$uID[] = "";
+	$uID="";
 
 	$userID = $conn->prepare("SELECT uID FROM users WHERE uUserName = ?");
 	$userID->bind_param('s', $uname);
 	$userID->execute();
 	$userID->bind_result($unames);
 	while ($userID->fetch()) {    	
-	  	array_push($uID, $unames);
+	  	$uID =$unames;
 	}
-
-	$uID[0] = $uID[1];
-	echo count($uID);
 
 	$sql = $conn->prepare("INSERT INTO reviews (ruID, rpID, rRating, rComment)
 	VALUES (?, ?, ?, ?)");
 	$sql->bind_param('iiis', $uID, $pID, $rRating, $rComment);
 	$sql->execute();
 
+
+
 	if($sql)
 		header("Location:  product.php?pID=$pID");
 	else
 		echo "<h1 style='color:Black>Failed to create review</h1>";
-
 
     $conn->close();
 
