@@ -21,7 +21,8 @@
     $array = array();
 
     if (isset($_POST['submit'])) {
-        $sql = "START TRANSACTION";
+
+        $conn->begin_transaction();
 
         // Get all nessesary values
         $nrOfItems =  mysqli_query($conn, "SELECT COUNT(*) FROM cartItem WHERE ciID=$uID");
@@ -57,22 +58,28 @@
             $delete = mysqli_query($conn, "DELETE FROM cartItem WHERE ciID = '$temp1' and cipID = '$temp2'");
         }
 
-        $newBalance = $uBalance - $totalPrice/2;
+        $newBalance = $uBalance - $totalPrice / 2;
 
-        $updateBalance = mysqli_query($conn, "UPDATE users
+        try {
+            if($uBalance < ($totalPrice / 2)) {
+                throw new Exception;
+            }
+            $updateBalance = mysqli_query($conn, "UPDATE users
             SET uBalance = '$newBalance'
             WHERE uID = '$uID' ");
-
-        if (!$updateBalance) {
-            printf("Error: %s\n", mysqli_error($conn));
-            exit();
+        } catch (Exception $e){
+            echo 'Not enough money';
+            $conn->rollback();
         }
 
         if ($conn->query($delete) == TRUE) {
+            $conn->rollback();
             echo '<script>alert("Error")</script>';
         } else {
-            echo '<script>alert("Success")</script>';
-            header("Location:  shoppingCart.php");
+            $conn->commit();
+            echo '<script>';
+            echo 'window.location = "shoppingCart.php"';
+            echo '</script>';
         }
     }
 
