@@ -31,6 +31,7 @@
 	        	array_push($user_exist_res, $unames);
 
 	        }
+	        $user_exist->free_result();
 
 			if(count($user_exist_res)>1){
 
@@ -53,17 +54,20 @@
 			        if ($get->fetch()) {
 			          $uID = $uIDs;
 			        }
+			        $get->free_result();
+			        echo $uID;
 
 			        $add = "INSERT INTO cart (cuID)
-			          VALUES ($uID)";
+					VALUES ($uID)";
 
-			         if ($conn->query($add) === TRUE) {
+			        if ($conn->query($add) === TRUE) { 
+			        	header("Location:  ../html/login.html");
 			        } else {
+			        	echo "<h1 style='color:white'>Failed to create shopping cart</h1>";
+			        	$delete = mysqli_query($conn, "DELETE FROM users WHERE uID = $uID");
 			        }
-
-					header("Location:  ../html/login.html");
 				} else {
-				  	echo "<h1 style='color:white>Failed to create account</h1>";
+				  	echo "<h1 style='color:white'>Failed to create account</h1>";
 				}			
 			}
 			
