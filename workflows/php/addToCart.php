@@ -108,7 +108,11 @@
               $sql = "UPDATE cartItem SET ciQuantity=ciQuantity+$amount WHERE ciID=$cID AND cipID=$pID";
 
               if ($conn->query($sql) === TRUE) {
-                  echo '<script>alert("Item Added!")</script>';
+                  //echo '<script>alert("Item Added!")</script>';
+                  echo '<script>';
+                  echo 'window.location = "store.php"';
+                  echo '</script>';
+
               } else {
                   echo '<script>alert("Failed to add item to cart")</script>';
               }
@@ -134,7 +138,11 @@
               VALUES ($cID, $pID, $amount)";
 
             if ($conn->query($add) === TRUE) {
-                echo '<script>alert("Item Added!")</script>';
+                //echo '<script>alert("Item Added!")</script>';
+                echo '<script>';
+                echo 'window.location = "store.php"';
+                echo '</script>';
+                
             } else {
                 echo '<script>alert("Failed to add item to cart")</script>';
             }

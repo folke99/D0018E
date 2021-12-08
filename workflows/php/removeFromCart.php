@@ -56,8 +56,9 @@
 		        if (($ciQuantity - $amount) <= 0) {
 		        	
 		        	$delete = mysqli_query($conn, "DELETE FROM cartItem WHERE ciID=$cID and cipID=$pID");
-		        	echo '<script>alert("Items removed!")</script>';
-		        	header("Location:  shoppingCart.php");
+		        	echo '<script>';
+		            echo 'window.location = "shoppingCart.php"';
+		            echo '</script>';
 		        }
 		        else{
 
@@ -66,8 +67,9 @@
 			    	$sql = "UPDATE cartItem SET ciQuantity=ciQuantity-$amount WHERE ciID=$cID AND cipID=$pID";
 
 			        if ($conn->query($sql) === TRUE) {
-			            echo '<script>alert("Items removed!")</script>';
-			            header("Location:  shoppingCart.php");
+			            echo '<script>';
+			            echo 'window.location = "shoppingCart.php"';
+			            echo '</script>';
 			        } else {
 			            
 			            echo '<script>alert("Could not remove items")</script>';
