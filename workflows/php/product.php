@@ -121,7 +121,8 @@
           echo 'Du har redan skrivit en review.';
         }
         else{
-          echo <<<HTML
+          
+echo <<<HTML
 
           <form action="../php/sendReview.php" method="GET">
 
@@ -143,8 +144,7 @@
             </div>
             
           </form>
-
-          HTML;
+HTML;
         }
         
         
