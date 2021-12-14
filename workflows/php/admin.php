@@ -45,7 +45,6 @@
       display: block;
       clear: both;
 
-    }
 
   </style>
 
@@ -146,6 +145,19 @@
         </div>
         <br>
         <button class="removeUserButton" type="submit">Remove user</button>
+      </form>
+    </div>
+    <div id="removeProductDiv">
+      <h3> Change stock </h3>
+      <form action="addStock.php">
+        <div class="pID">
+            <label for="pID"><h2>Product ID</h2></label>
+            <input type="text" placeholder="Enter product ID" name="pID" required>
+            <label for="pStock"><h2>New stock value</h2></label>
+            <input type="text" placeholder="Enter user ID" name="pNewStock" required>
+        </div>
+        <br>
+        <button class="removeUserButton" type="submit">Add stock</button>
       </form>
     </div>
 
