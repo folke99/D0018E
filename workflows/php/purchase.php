@@ -16,6 +16,7 @@
     <?php
     include('databaseConnection.php');
     $uname = $_SESSION['username'];
+    $totalPrice = 0;
     //error_reporting(error_reporting() & ~E_NOTICE);
 
     $array = array();
@@ -23,6 +24,7 @@
     if (isset($_POST['submit'])) {
 
         $conn->begin_transaction();
+        
 
         // Get all nessesary values
         $nrOfItems =  mysqli_query($conn, "SELECT COUNT(*) FROM cartItem WHERE ciID=$uID");
@@ -51,23 +53,26 @@
                 SET pStock = '$newQuantity'
                 WHERE pID = '$cipID' ");
         }
-
+        
         for ($i = 0; $i < sizeof($array); $i += 2) {
             $temp1 = $array[$i];
             $temp2 = $array[$i + 1];
             $delete = mysqli_query($conn, "DELETE FROM cartItem WHERE ciID = '$temp1' and cipID = '$temp2'");
         }
 
-        $newBalance = $uBalance - $totalPrice / 2;
+        $newBalance = $uBalance - $totalPrice;
 
         try {
-            if($uBalance < ($totalPrice / 2)) {
+            if($uBalance < $totalPrice) {
+               
                 throw new Exception;
             }
             $updateBalance = mysqli_query($conn, "UPDATE users
             SET uBalance = '$newBalance'
             WHERE uID = '$uID' ");
+
         } catch (Exception $e){
+             echo "<script>alert($totalPrice)</script>";
             echo 'Not enough money';
             $conn->rollback();
         }
