@@ -44,7 +44,21 @@
     #removeProductDiv ul li{
       display: block;
       clear: both;
+    }
 
+    .orders{
+      margin: auto;
+      margin-bottom: 20px;
+      width: 20%;
+      background-color: grey;
+      color: black;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+
+    .orders:hover{
+      background-color: darkgray;
+    }
 
   </style>
 
@@ -88,7 +102,12 @@
     <p></p> 
   </div>
 
+  <a class="orders" href="manageOrders.php"> <h3> Manage Orders  </h3></a>
+
   <div id="content">
+
+    
+
     <div id="addNewProduct">
       <h3> Add Product </h3>
       <form action="addProduct.php" method="POST" enctype="multipart/form-data">

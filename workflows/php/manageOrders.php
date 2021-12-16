@@ -94,13 +94,19 @@
             padding-top: 10px;
         }
 
-        .order h1{
+        .order h1, h2, h3{
             text-align: center;
             color: white;
         }
 
         .order p{
             text-align: center;
+        }
+
+        .changeStatus{
+            width: 50%;
+            text-align: center;
+            margin: auto;
         }
 
     </style>
@@ -156,17 +162,25 @@
         error_reporting(error_reporting() & ~E_NOTICE);
 
         //Get order
-        $order = mysqli_query($conn, "SELECT * FROM orderTable WHERE ouID = $uID");
+        $order = mysqli_query($conn, "SELECT * FROM orderTable");
         while ($row1 = mysqli_fetch_array($order)) {
             $oID = $row1['oID'];
             $ouID = $row1['ouID'];
             $oStatus = $row1['oStatus'];
             $oPrice = $row1['oPrice'];
 
+            //Get username
+            $user = mysqli_query($conn, "SELECT uUserName FROM users WHERE uID=$ouID");
+            if ($rowName = mysqli_fetch_array($user)) {
+                $uName = $rowName['uUserName'];
+            }
+
+
 echo <<<HTML
 
     <div class="order">
     <h1> OrderID: $oID </h1>
+    <h2> Username: $uName </h2>
 
 HTML;
 
@@ -201,11 +215,47 @@ HTML;
 echo <<<HTML
     
     <p>Total price: $oPrice</p>
-     <p>Status: $oStatus</p>
+    <p>Current Status: $oStatus</p>
+    <br>
+
+
+    <h3> Change Status: </h3>
+
+    <div class="changeStatus">
+        <form action="?">
+            <input type="hidden" name="oID" value="$oID">
+            <select name="status">
+                <option value="Order Processing"> Order Processing </option>
+                <option value="Shipped"> Shipped </option>
+            </select>
+
+            <button> Submit </button>
+
+        </form>
+    </div>
+
     </div>
 
 HTML;
+                
 
+        }
+
+
+        echo $oID;
+
+        if (isset($_GET['status'])) {
+            $updateStatus = $_GET['status'];
+            $ID = $_GET['oID'];
+
+            $sql = mysqli_query($conn, "UPDATE orderTable SET oStatus = '$updateStatus' WHERE oID = $ID");
+            if ($conn->query($sql) === TRUE) {
+            }
+            else{
+                echo '<script>';
+                echo 'window.location = "manageOrders.php"';
+                echo '</script>';
+            }
         }
 
 
@@ -217,7 +267,8 @@ HTML;
         }
 
         if ($max == 0) {
-            echo <<<HTML
+
+echo <<<HTML
             <div class="checkout">
                 <h1> You haven't ordered anything yet </h1>
             </div>

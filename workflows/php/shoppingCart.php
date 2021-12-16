@@ -105,8 +105,6 @@
         $uID = $row0['uID'];
         $uBalance = $row0['uBalance'];
     }
-    echo $uBalance;
-    echo $uID;
 
     include('adminAndBalanceCheck.php');
     ?>
