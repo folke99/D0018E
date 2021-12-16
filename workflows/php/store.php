@@ -139,11 +139,13 @@
 
         if ($row = mysqli_fetch_array($get)) {
           $p_stock = $row['pStock'];
+
+          if ($p_stock < 0) {
+            $p_stock = 0;
+          }
         }
 
-        if ($p_stock == 0) {
-          $p_price = "Out of Stock";
-        }
+        
 
 
 
@@ -168,6 +170,7 @@ echo <<<HTML
               <form method="POST">
                 <label for="amount"><h3>Select Amount</h3></label>
                 <input type="number" name="amount" min="1" value="1" style="width: 15%; required">
+                <p> In Stock: $p_stock </p>
                 <p><button type="submit" name="$p_button" value="submit" >Add to Cart</button></p>
               </form>
             </div>
