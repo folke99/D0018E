@@ -32,6 +32,30 @@
 			            printf("Table cart created successfully.<br />");
 			         }
 
+
+			$sql = "CREATE TABLE orderTable( ".
+			            "oID INT NOT NULL AUTO_INCREMENT,".
+			            "ouID INT NOT NULL,".
+			            "oStatus VARCHAR(20),".
+			            "oPrice INT NOT NULL,".
+			            "PRIMARY KEY (oID)); ";
+			         if ($conn->query($sql)) {
+			            printf("Table order created successfully.<br />");
+			         }
+			         else{
+			         	echo "order not successfull";
+			         }
+
+
+			$sql = "CREATE TABLE orderItem( ".
+			            "oiID INT NOT NULL,".
+			            "oipID INT NOT NULL, ".
+			            "oiPrice INT NOT NULL, ".
+			            "oiQuantity INT NOT NULL);";
+			         if ($conn->query($sql)) {
+			            printf("Table orderItem created successfully.<br />");
+			         }
+
 			$sql = "CREATE TABLE reviews( ".
 			            "ruID INT NOT NULL, ".
 			            "rpID INT NOT NULL, ".
