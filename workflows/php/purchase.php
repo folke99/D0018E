@@ -32,6 +32,17 @@
             $max = $row['COUNT(*)'];
         }
 
+        //Create order
+
+        $sql = "INSERT INTO orderTable (ouID, oStatus, oPrice)
+            VALUES ($uID, 'Order Processing', 0)";
+
+        if ($conn->query($sql) === TRUE) {
+            $last_id = $conn->insert_id;
+        }
+        else{
+        }
+
         $cart = mysqli_query($conn, "SELECT * FROM cartItem WHERE ciID=$uID");
         while ($row1 = mysqli_fetch_array($cart)) {
             $ciID = $row1['ciID'];
@@ -52,8 +63,28 @@
             $updateStock = mysqli_query($conn, "UPDATE products 
                 SET pStock = '$newQuantity'
                 WHERE pID = '$cipID' ");
+
+            //Create order Item
+
+            $sql = "INSERT INTO orderItem (oiID, oipID, oiPrice, oiQuantity)
+                    VALUES($last_id, $cipID, $pPrice, $quantity)";
+
+            if ($conn->query($sql) === TRUE) {
+            }
+            else{
+            }
+
         }
-        
+
+        //Update totalprice in order
+
+        $sql = "UPDATE orderTable SET oPrice = $totalPrice WHERE oID = $last_id";
+        if ($conn->query($sql) === TRUE) {
+        }
+        else{
+        }
+
+
         for ($i = 0; $i < sizeof($array); $i += 2) {
             $temp1 = $array[$i];
             $temp2 = $array[$i + 1];
@@ -72,8 +103,7 @@
             WHERE uID = '$uID' ");
 
         } catch (Exception $e){
-             echo "<script>alert($totalPrice)</script>";
-            echo 'Not enough money';
+             echo '<script>alert("Not enough money")</script>';
             $conn->rollback();
         }
 
