@@ -116,6 +116,7 @@
         include('getProducts.php');
         include('checkRating.php');
         
+
         //Check grid position
 
         if ($counter == 1) {
@@ -131,6 +132,8 @@
           $counter = 1;
         }
 
+
+
         //Stock check
         $get = mysqli_query($conn,"SELECT pStock FROM products WHERE pID='$p_ID'");
 
@@ -141,6 +144,7 @@
         if ($p_stock == 0) {
           $p_price = "Out of Stock";
         }
+
 
 
 
