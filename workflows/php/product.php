@@ -44,6 +44,9 @@
       if($row1 = mysqli_fetch_array($users)){
         $uUserName = $row1['uUserName'];
       }
+      else{
+        $uUserName = "Removed_User";
+      }
 
       $temp = 'User: '. $uUserName. '&emsp;'. 'Review: '. $review. '&emsp;'. 'Rating: '. $rRating. '<br>'. '<br>';
       array_push($array, $temp);

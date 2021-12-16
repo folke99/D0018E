@@ -97,11 +97,11 @@
         </div>
         <div class="pPrice">
           <label for="pPrice"><h2>Price</h2></label>
-          <input type="text" placeholder="Enter product price" name="pPrice" required>
+          <input type="number" min="0" placeholder="Enter product price" name="pPrice" required>
         </div>
         <div class="pStock">
           <label for="pStock"><h2>Stock</h2></label>
-          <input type="number" placeholder="Enter product stock" name="pStock" required>
+          <input type="number" min="0" placeholder="Enter product stock" name="pStock" required>
         </div>
         <div class="pDescription">
           <label for="pDescription"><h2>Description</h2></label>
@@ -154,10 +154,24 @@
             <label for="pID"><h2>Product ID</h2></label>
             <input type="text" placeholder="Enter product ID" name="pID" required>
             <label for="pStock"><h2>New stock value</h2></label>
-            <input type="text" placeholder="Enter user ID" name="pNewStock" required>
+            <input type="number" min="0" placeholder="Enter new stock value" name="pNewStock" required>
         </div>
         <br>
         <button class="removeUserButton" type="submit">Add stock</button>
+      </form>
+    </div>
+
+    <div id="removeProductDiv">
+      <h3> Change price </h3>
+      <form action="changePrice.php">
+        <div class="pID">
+            <label for="pID"><h2>Product ID</h2></label>
+            <input type="text" placeholder="Enter product ID" name="pID" required>
+            <label for="pPrice"><h2>New price</h2></label>
+            <input type="number" min="0" placeholder="Enter price" name="pNewPrice" required>
+        </div>
+        <br>
+        <button class="removeUserButton" type="submit">Update price</button>
       </form>
     </div>
 
