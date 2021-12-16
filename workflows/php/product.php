@@ -74,6 +74,7 @@
   <div id="menu">
     <ul>
       <li><a href="store.php">Home</a></li>
+      <li><a href="viewOrder.php">Orders</a></li>
       <li><a href="../html/login.html" class="menuright">Logout</a></li>
       <?php 
       if ($adminCheck == 1) {

@@ -66,8 +66,8 @@
 
             //Create order Item
 
-            $sql = "INSERT INTO orderItem (oiID, oipID, oiPrice, oiQuantity)
-                    VALUES($last_id, $cipID, $pPrice, $quantity)";
+            $sql = "INSERT INTO orderItem (oiID, oipID, oipName, oiPrice, oiQuantity)
+                    VALUES($last_id, $cipID, '$pName', $pPrice, $quantity)";
 
             if ($conn->query($sql) === TRUE) {
             }
@@ -103,7 +103,7 @@
             WHERE uID = '$uID' ");
 
         } catch (Exception $e){
-             echo '<script>alert("Not enough money")</script>';
+            echo '<script>alert("Not enough money")</script>';
             $conn->rollback();
         }
 

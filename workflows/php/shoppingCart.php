@@ -120,6 +120,7 @@
     <div id="menu">
         <ul>
           <li><a href="store.php">Home</a></li>
+          <li><a href="viewOrder.php">Orders</a></li>
           <li><a href="../html/login.html" class="menuright">Logout</a></li>
           <?php 
           if ($adminCheck == 1) {
@@ -130,7 +131,6 @@
           <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
           <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
           <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
-          <li><a href="viewOrder.php">Orders</a></li>
        </ul>
         <p></p> 
   </div>

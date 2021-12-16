@@ -35,25 +35,13 @@
             box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
 
-        .gridContainerOrder {
-            display: grid;
-            grid-template-areas:
-                'order';
-            grid-column-gap: 20px;
-            margin-bottom: 50px;
-            margin-left: 20px;
-            margin-right: 20px;
-            text-align: center;
-            padding-top: 15px;
-        }
-
         /* The grid container */
         .gridContainer {
             display: grid;
             grid-template-areas:
                 'left left middle middle right right';
             grid-column-gap: 20px;
-            margin-bottom: 50px;
+            margin-bottom: 10px;
             margin-left: 20px;
             margin-right: 20px;
             text-align: center;
@@ -99,11 +87,22 @@
             background-color: rgba(69, 162, 158, 0.7);
         }
 
-        .order {
-            display: block;
-            width: 100%;
-            background-color: red;
+        .order{
+            border: 2px white solid;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding-top: 10px;
         }
+
+        .order h1{
+            text-align: center;
+            color: white;
+        }
+
+        .order p{
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -137,6 +136,7 @@
     <div id="menu">
         <ul>
             <li><a href="store.php">Home</a></li>
+            <li><a href="viewOrder.php">Orders</a></li>
             <li><a href="../html/login.html" class="menuright">Logout</a></li>
             <?php
             if ($adminCheck == 1) {
@@ -147,7 +147,6 @@
             <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
             <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
             <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
-            <li><a href="viewOrder.php">Orders</a></li>
         </ul>
         <p></p>
     </div>
@@ -166,12 +165,10 @@
             $oStatus = $row1['oStatus'];
             $oPrice = $row1['oPrice'];
 
-            echo <<<HTML
+echo <<<HTML
 
-
-    <div class="gridContainerOrder">
-        <div class="order">
-        
+    <div class="order">
+    <h1> OrderID: $oID </h1>
 
 HTML;
 
@@ -181,43 +178,36 @@ HTML;
                 $oipID = $row2['oipID'];
                 $oiPrice = $row2['oiPrice'];
                 $oiQuantity = $row2['oiQuantity'];
+                $oipName = $row2['oipName'];
 
-                /*
-                array_push($productArray, $oipID);
-                array_push($productArray, $oiPrice);
-                array_push($productArray, $oiQuantity);
 
-                for ($i = 0; $i < sizeof($productArray); $i += 3) {
-                    $oipIDFromArray      = $productArray[$i];
-                    $oiPriceFromArray    = $productArray[$i + 1];
-                    $oiQuantityFromArray = $productArray[$i + 2];
-                */
 
-                echo <<<HTML
+echo <<<HTML
 <center>
             <div class="items2">
                 <div class="gridContainer">
-                    <div class="left">
-                        <p>Total price: $oPrice</p>
-                    </div>
 
                     <div class="middle">
-                        <p>ProductID: $oipID</p>
+                        <p>Product: $oipName</p>
                         <p>Quantity: $oiQuantity</p>
                         <p>Price: $oiPrice</p>
                     </div>
 
-                    <div class="right">
-                        <p>Status: $oStatus</p>
-                    </div>
                 </div>
             </div>
 </center>
-        </div>
-        </div>
+
 HTML;
-                //}
             }
+
+echo <<<HTML
+    
+    <p>Total price: $oPrice</p>
+     <p>Status: $oStatus</p>
+    </div>
+
+HTML;
+
         }
 
 

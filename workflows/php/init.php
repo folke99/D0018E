@@ -50,6 +50,7 @@
 			$sql = "CREATE TABLE orderItem( ".
 			            "oiID INT NOT NULL,".
 			            "oipID INT NOT NULL, ".
+			            "oipName VARCHAR(20), ".
 			            "oiPrice INT NOT NULL, ".
 			            "oiQuantity INT NOT NULL);";
 			         if ($conn->query($sql)) {
