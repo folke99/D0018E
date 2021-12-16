@@ -83,6 +83,7 @@
       <li> Items in cart: <?php include('itemsInCart.php'); ?> </li>
       <li> <span></span> Balance: $<?php echo $balanceCheck; ?> </li>
       <li id="user"> <span></span> User: <?php echo $_SESSION['username'] ?> </li>
+      <li><a href="viewOrder.php">Orders</a></li>
    </ul>
     <p></p> 
   </div>
